@@ -1,0 +1,1557 @@
+[
+  {
+    "id": "00a8821d-dfd0-4d49-8875-41f2c5a0a01b",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13760",
+      "definition": {
+        "name": {
+          "en-US": "question 13760"
+        },
+        "description": {
+          "de-DE": "Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "2426",
+            "description": {
+              "de-DE": "Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?"
+            }
+          },
+          {
+            "id": "22557",
+            "description": {
+              "de-DE": "Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?"
+            }
+          },
+          {
+            "id": "23376",
+            "description": {
+              "de-DE": "Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  ",
+          "dialogId": "13760",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?",
+              "questionId": "22557",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13766",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?",
+              "questionId": "23376",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13761",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?",
+              "questionId": "2426",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13779",
+                "mood": {
+                  "action": "",
+                  "value": -5
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:35.086Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:35.095Z",
+    "stored": "2017-06-01T09:22:35.348Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"00a8821d-dfd0-4d49-8875-41f2c5a0a01b\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  \",\n                \"dialogId\": \"13760\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?\",\n                        \"questionId\": \"22557\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13766\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?\",\n                        \"questionId\": \"23376\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13761\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?\",\n                        \"questionId\": \"2426\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13779\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": -5\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:35.086Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:35.095Z\",\n    \"stored\": \"2017-06-01T09:22:35.348Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13760\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13760\"\n            },\n            \"description\": {\n                \"de-DE\": \"Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"2426\",\n                    \"description\": {\n                        \"de-DE\": \"Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?\"\n                    }\n                },\n                {\n                    \"id\": \"22557\",\n                    \"description\": {\n                        \"de-DE\": \"Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?\"\n                    }\n                },\n                {\n                    \"id\": \"23376\",\n                    \"description\": {\n                        \"de-DE\": \"Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "8250a7a2-dc53-41ae-bcba-45382357485a",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13701",
+      "definition": {
+        "name": {
+          "en-US": "question 13701"
+        },
+        "description": {
+          "de-DE": "Schmerz-Weg kann auch nicht mehr als die anderen!"
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "2471",
+            "description": {
+              "de-DE": "Bei welchen Patienten haben Sie diese Erfahrung gemacht?"
+            }
+          },
+          {
+            "id": "21905",
+            "description": {
+              "de-DE": "Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?"
+            }
+          },
+          {
+            "id": "23631",
+            "description": {
+              "de-DE": "Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?"
+            }
+          },
+          {
+            "id": "22936",
+            "description": {
+              "de-DE": "Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?"
+            }
+          },
+          {
+            "id": "22669",
+            "description": {
+              "de-DE": "Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?"
+            }
+          },
+          {
+            "id": "23653",
+            "description": {
+              "de-DE": "Welchen anderen Medikamente meinen Sie?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Schmerz-Weg kann auch nicht mehr als die anderen!",
+          "dialogId": "13701",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?",
+              "questionId": "22936",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13702",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Bei welchen Patienten haben Sie diese Erfahrung gemacht?",
+              "questionId": "2471",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13760",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?",
+              "questionId": "21905",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13791",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?",
+              "questionId": "23631",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13754",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?",
+              "questionId": "22669",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13737",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Welchen anderen Medikamente meinen Sie?",
+              "questionId": "23653",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13727",
+                "mood": {
+                  "action": "",
+                  "value": -5
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:32.048Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:32.050Z",
+    "stored": "2017-06-01T09:22:32.328Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"8250a7a2-dc53-41ae-bcba-45382357485a\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Schmerz-Weg kann auch nicht mehr als die anderen!\",\n                \"dialogId\": \"13701\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?\",\n                        \"questionId\": \"22936\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13702\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Bei welchen Patienten haben Sie diese Erfahrung gemacht?\",\n                        \"questionId\": \"2471\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13760\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?\",\n                        \"questionId\": \"21905\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13791\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?\",\n                        \"questionId\": \"23631\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13754\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?\",\n                        \"questionId\": \"22669\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13737\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Welchen anderen Medikamente meinen Sie?\",\n                        \"questionId\": \"23653\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13727\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": -5\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:32.048Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:32.050Z\",\n    \"stored\": \"2017-06-01T09:22:32.328Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13701\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13701\"\n            },\n            \"description\": {\n                \"de-DE\": \"Schmerz-Weg kann auch nicht mehr als die anderen!\"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"2471\",\n                    \"description\": {\n                        \"de-DE\": \"Bei welchen Patienten haben Sie diese Erfahrung gemacht?\"\n                    }\n                },\n                {\n                    \"id\": \"21905\",\n                    \"description\": {\n                        \"de-DE\": \"Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?\"\n                    }\n                },\n                {\n                    \"id\": \"23631\",\n                    \"description\": {\n                        \"de-DE\": \"Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?\"\n                    }\n                },\n                {\n                    \"id\": \"22936\",\n                    \"description\": {\n                        \"de-DE\": \"Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?\"\n                    }\n                },\n                {\n                    \"id\": \"22669\",\n                    \"description\": {\n                        \"de-DE\": \"Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?\"\n                    }\n                },\n                {\n                    \"id\": \"23653\",\n                    \"description\": {\n                        \"de-DE\": \"Welchen anderen Medikamente meinen Sie?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "a8767dbe-5abe-4f8c-bea4-befa7ccaec37",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13769",
+      "definition": {
+        "name": {
+          "en-US": "question 13769"
+        },
+        "description": {
+          "de-DE": "Vielen Dank! Ich werde es bestimmt einmal versuchen, Ihr Schmerz-Weg!  "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "23475",
+            "description": {
+              "de-DE": "Vielen Dank, Herr Doktor, es freut mich, wenn Sie es einsetzen. Bis zum nächsten Mal. Auf Wiedersehen!"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Vielen Dank! Ich werde es bestimmt einmal versuchen, Ihr Schmerz-Weg!  ",
+          "dialogId": "13769",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Vielen Dank, Herr Doktor, es freut mich, wenn Sie es einsetzen. Bis zum nächsten Mal. Auf Wiedersehen!",
+              "questionId": "23475",
+              "feedback": {
+                "feedback": "",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:25.218Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:25.222Z",
+    "stored": "2017-06-01T09:22:25.474Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"a8767dbe-5abe-4f8c-bea4-befa7ccaec37\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Vielen Dank! Ich werde es bestimmt einmal versuchen, Ihr Schmerz-Weg!  \",\n                \"dialogId\": \"13769\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Vielen Dank, Herr Doktor, es freut mich, wenn Sie es einsetzen. Bis zum nächsten Mal. Auf Wiedersehen!\",\n                        \"questionId\": \"23475\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:25.218Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:25.222Z\",\n    \"stored\": \"2017-06-01T09:22:25.474Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13769\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13769\"\n            },\n            \"description\": {\n                \"de-DE\": \"Vielen Dank! Ich werde es bestimmt einmal versuchen, Ihr Schmerz-Weg!  \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"23475\",\n                    \"description\": {\n                        \"de-DE\": \"Vielen Dank, Herr Doktor, es freut mich, wenn Sie es einsetzen. Bis zum nächsten Mal. Auf Wiedersehen!\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "1efe29f5-25e6-482f-b049-aeb1f4ad0d8c",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13768",
+      "definition": {
+        "name": {
+          "en-US": "question 13768"
+        },
+        "description": {
+          "de-DE": "Warum nicht? "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "2269",
+            "description": {
+              "de-DE": "Am besten, ich gebe Ihnen Schmerz-Weg-Muster,  damit Sie es einmal bei Ihren nächsten Spannungskopfschmerz-Patienten einsetzen und sich selbst ein Bild  von diesem großartigen Medikament machen  können!"
+            }
+          },
+          {
+            "id": "22036",
+            "description": {
+              "de-DE": "Hier sind Muster für Ihre nächsten Spannungskopfschmerz-Patienten, die Sie auf eine Schmerz-Weg-Basistherapie einstellen wollen."
+            }
+          },
+          {
+            "id": "21945",
+            "description": {
+              "de-DE": "Hier bekommen Sie zwei Muster, mit denen  Sie Ihre nächsten Spannungskopfschmerz-Patienten ein- bzw.  umstellen können!"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Warum nicht? ",
+          "dialogId": "13768",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Am besten, ich gebe Ihnen Schmerz-Weg-Muster,  damit Sie es einmal bei Ihren nächsten Spannungskopfschmerz-Patienten einsetzen und sich selbst ein Bild  von diesem großartigen Medikament machen  können!",
+              "questionId": "2269",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13769",
+                "mood": {
+                  "action": "",
+                  "value": 5
+                }
+              }
+            },
+            {
+              "text": "Hier sind Muster für Ihre nächsten Spannungskopfschmerz-Patienten, die Sie auf eine Schmerz-Weg-Basistherapie einstellen wollen.",
+              "questionId": "22036",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13769",
+                "mood": {
+                  "action": "",
+                  "value": 5
+                }
+              }
+            },
+            {
+              "text": "Hier bekommen Sie zwei Muster, mit denen  Sie Ihre nächsten Spannungskopfschmerz-Patienten ein- bzw.  umstellen können!",
+              "questionId": "21945",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13769",
+                "mood": {
+                  "action": "",
+                  "value": 5
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:24.102Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:24.107Z",
+    "stored": "2017-06-01T09:22:24.331Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"1efe29f5-25e6-482f-b049-aeb1f4ad0d8c\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Warum nicht? \",\n                \"dialogId\": \"13768\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Am besten, ich gebe Ihnen Schmerz-Weg-Muster,  damit Sie es einmal bei Ihren nächsten Spannungskopfschmerz-Patienten einsetzen und sich selbst ein Bild  von diesem großartigen Medikament machen  können!\",\n                        \"questionId\": \"2269\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13769\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 5\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Hier sind Muster für Ihre nächsten Spannungskopfschmerz-Patienten, die Sie auf eine Schmerz-Weg-Basistherapie einstellen wollen.\",\n                        \"questionId\": \"22036\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13769\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 5\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Hier bekommen Sie zwei Muster, mit denen  Sie Ihre nächsten Spannungskopfschmerz-Patienten ein- bzw.  umstellen können!\",\n                        \"questionId\": \"21945\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13769\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 5\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:24.102Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:24.107Z\",\n    \"stored\": \"2017-06-01T09:22:24.331Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13768\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13768\"\n            },\n            \"description\": {\n                \"de-DE\": \"Warum nicht? \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"2269\",\n                    \"description\": {\n                        \"de-DE\": \"Am besten, ich gebe Ihnen Schmerz-Weg-Muster,  damit Sie es einmal bei Ihren nächsten Spannungskopfschmerz-Patienten einsetzen und sich selbst ein Bild  von diesem großartigen Medikament machen  können!\"\n                    }\n                },\n                {\n                    \"id\": \"22036\",\n                    \"description\": {\n                        \"de-DE\": \"Hier sind Muster für Ihre nächsten Spannungskopfschmerz-Patienten, die Sie auf eine Schmerz-Weg-Basistherapie einstellen wollen.\"\n                    }\n                },\n                {\n                    \"id\": \"21945\",\n                    \"description\": {\n                        \"de-DE\": \"Hier bekommen Sie zwei Muster, mit denen  Sie Ihre nächsten Spannungskopfschmerz-Patienten ein- bzw.  umstellen können!\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "49690092-50fb-4387-bfa6-492f87e6444d",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13767",
+      "definition": {
+        "name": {
+          "en-US": "question 13767"
+        },
+        "description": {
+          "de-DE": "Ja, solche Patienten habe ich auch.  "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "22577",
+            "description": {
+              "de-DE": "Können Sie sich hier eine erfolgreiche  Therapie mit Schmerz-Weg vorstellen?"
+            }
+          },
+          {
+            "id": "22796",
+            "description": {
+              "de-DE": "Nun, dann stellen Sie diese Patienten doch  auf Schmerz-Weg ein!"
+            }
+          },
+          {
+            "id": "22677",
+            "description": {
+              "de-DE": "Möchten Sie diese Patienten auf Schmerz-Weg  einstellen?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Ja, solche Patienten habe ich auch.  ",
+          "dialogId": "13767",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Können Sie sich hier eine erfolgreiche  Therapie mit Schmerz-Weg vorstellen?",
+              "questionId": "22577",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13768",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Nun, dann stellen Sie diese Patienten doch  auf Schmerz-Weg ein!",
+              "questionId": "22796",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13769",
+                "mood": {
+                  "action": "",
+                  "value": 5
+                }
+              }
+            },
+            {
+              "text": "Möchten Sie diese Patienten auf Schmerz-Weg  einstellen?",
+              "questionId": "22677",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13769",
+                "mood": {
+                  "action": "",
+                  "value": 5
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:22.850Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:22.852Z",
+    "stored": "2017-06-01T09:22:23.124Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"49690092-50fb-4387-bfa6-492f87e6444d\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Ja, solche Patienten habe ich auch.  \",\n                \"dialogId\": \"13767\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Können Sie sich hier eine erfolgreiche  Therapie mit Schmerz-Weg vorstellen?\",\n                        \"questionId\": \"22577\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13768\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Nun, dann stellen Sie diese Patienten doch  auf Schmerz-Weg ein!\",\n                        \"questionId\": \"22796\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13769\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 5\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Möchten Sie diese Patienten auf Schmerz-Weg  einstellen?\",\n                        \"questionId\": \"22677\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13769\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 5\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:22.850Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:22.852Z\",\n    \"stored\": \"2017-06-01T09:22:23.124Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13767\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13767\"\n            },\n            \"description\": {\n                \"de-DE\": \"Ja, solche Patienten habe ich auch.  \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"22577\",\n                    \"description\": {\n                        \"de-DE\": \"Können Sie sich hier eine erfolgreiche  Therapie mit Schmerz-Weg vorstellen?\"\n                    }\n                },\n                {\n                    \"id\": \"22796\",\n                    \"description\": {\n                        \"de-DE\": \"Nun, dann stellen Sie diese Patienten doch  auf Schmerz-Weg ein!\"\n                    }\n                },\n                {\n                    \"id\": \"22677\",\n                    \"description\": {\n                        \"de-DE\": \"Möchten Sie diese Patienten auf Schmerz-Weg  einstellen?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "e5b12f5d-03b8-41a2-8fe7-0143e5c1c130",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13766",
+      "definition": {
+        "name": {
+          "en-US": "question 13766"
+        },
+        "description": {
+          "de-DE": "Ja, das kann schon sein! "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "22807",
+            "description": {
+              "de-DE": "Nun, haben Sie Spannungskopfschmerz-Patienten über 40,  d.h. Vorbelastet sind?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Ja, das kann schon sein! ",
+          "dialogId": "13766",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Nun, haben Sie Spannungskopfschmerz-Patienten über 40,  d.h. Vorbelastet sind?",
+              "questionId": "22807",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13767",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:22:21.188Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:22:21.196Z",
+    "stored": "2017-06-01T09:22:21.655Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"e5b12f5d-03b8-41a2-8fe7-0143e5c1c130\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Ja, das kann schon sein! \",\n                \"dialogId\": \"13766\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Nun, haben Sie Spannungskopfschmerz-Patienten über 40,  d.h. Vorbelastet sind?\",\n                        \"questionId\": \"22807\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13767\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:22:21.188Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:22:21.196Z\",\n    \"stored\": \"2017-06-01T09:22:21.655Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13766\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13766\"\n            },\n            \"description\": {\n                \"de-DE\": \"Ja, das kann schon sein! \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"22807\",\n                    \"description\": {\n                        \"de-DE\": \"Nun, haben Sie Spannungskopfschmerz-Patienten über 40,  d.h. Vorbelastet sind?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "736a7f8d-54a3-45c7-b16f-68354510a581",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13760",
+      "definition": {
+        "name": {
+          "en-US": "question 13760"
+        },
+        "description": {
+          "de-DE": "Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  "
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "2426",
+            "description": {
+              "de-DE": "Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?"
+            }
+          },
+          {
+            "id": "22557",
+            "description": {
+              "de-DE": "Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?"
+            }
+          },
+          {
+            "id": "23376",
+            "description": {
+              "de-DE": "Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  ",
+          "dialogId": "13760",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?",
+              "questionId": "2426",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13779",
+                "mood": {
+                  "action": "",
+                  "value": -5
+                }
+              }
+            },
+            {
+              "text": "Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?",
+              "questionId": "22557",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13766",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?",
+              "questionId": "23376",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13761",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:13:30.761Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:13:30.770Z",
+    "stored": "2017-06-01T09:13:31.177Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"736a7f8d-54a3-45c7-b16f-68354510a581\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  \",\n                \"dialogId\": \"13760\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?\",\n                        \"questionId\": \"2426\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13779\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": -5\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?\",\n                        \"questionId\": \"22557\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13766\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?\",\n                        \"questionId\": \"23376\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13761\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:13:30.761Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:13:30.770Z\",\n    \"stored\": \"2017-06-01T09:13:31.177Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13760\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13760\"\n            },\n            \"description\": {\n                \"de-DE\": \"Zwei Patienten mit anfallsweisen Kopfschmerzen und das Ergebnis war nicht berauschend.  \"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"2426\",\n                    \"description\": {\n                        \"de-DE\": \"Bei diesen Patienten handelt es sich wohl eher  um Migräne-Patienten. Hier ist die Basistherapie  Migräne-Weg. Wenn die Spannungskopfschmerz-Komponente überwiegt, empfehlen wir, die Schmerz-Weg-Basistherapie mit EMF zu ergänzen. Möchten Sie das b. diesen Patienten einsetzen?\"\n                    }\n                },\n                {\n                    \"id\": \"22557\",\n                    \"description\": {\n                        \"de-DE\": \"Kann es sein, dass dieser Patient an Migräne leidet, die natürlich weniger stark auf Schmerz-Weg ansprechen als -Patienten?\"\n                    }\n                },\n                {\n                    \"id\": \"23376\",\n                    \"description\": {\n                        \"de-DE\": \"Spontane, anfallsartige Atemnot spricht eher  für Migräne. Bei Migräne-Patienten ist der Einsatz  von Schmerz-Weg in der Regel nicht indiziert. Haben Sie Schmerz-Weg denn auch bei Spannungskopfschmerz-Patienten eingesetzt?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  },
+  {
+    "id": "0c23bbd3-572d-40fd-94a5-8d79b464e665",
+    "actor": {
+      "name": "ExampleActor",
+      "mbox": "mailto:example@test.de",
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": null,
+      "degraded": false
+    },
+    "verb": {
+      "id": "http://adlnet.gov/expapi/verbs/experienced",
+      "display": {
+        "en-US": "experienced"
+      }
+    },
+    "target": {
+      "objectType": "Activity",
+      "id": "http://www.chemmedia.de/expapi/conversation_trainer/question_13701",
+      "definition": {
+        "name": {
+          "en-US": "question 13701"
+        },
+        "description": {
+          "de-DE": "Schmerz-Weg kann auch nicht mehr als die anderen!"
+        },
+        "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+        "moreInfo": null,
+        "extensions": null,
+        "interactionType": "choice",
+        "correctResponsesPattern": null,
+        "choices": [
+          {
+            "id": "2471",
+            "description": {
+              "de-DE": "Bei welchen Patienten haben Sie diese Erfahrung gemacht?"
+            }
+          },
+          {
+            "id": "21905",
+            "description": {
+              "de-DE": "Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?"
+            }
+          },
+          {
+            "id": "23631",
+            "description": {
+              "de-DE": "Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?"
+            }
+          },
+          {
+            "id": "22936",
+            "description": {
+              "de-DE": "Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?"
+            }
+          },
+          {
+            "id": "22669",
+            "description": {
+              "de-DE": "Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?"
+            }
+          },
+          {
+            "id": "23653",
+            "description": {
+              "de-DE": "Welchen anderen Medikamente meinen Sie?"
+            }
+          }
+        ],
+        "scale": null,
+        "source": null,
+        "target": null,
+        "steps": null
+      }
+    },
+    "result": {
+      "score": null,
+      "success": null,
+      "completion": null,
+      "duration": null,
+      "response": null,
+      "extensions": {
+        "chemmedia://expapi/dialog": {
+          "title": "",
+          "statement": "Schmerz-Weg kann auch nicht mehr als die anderen!",
+          "dialogId": "13701",
+          "duration": -1,
+          "shuffle": false,
+          "questions": [
+            {
+              "text": "Bei welchen Patienten haben Sie diese Erfahrung gemacht?",
+              "questionId": "2471",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13760",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?",
+              "questionId": "21905",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13791",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?",
+              "questionId": "23631",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13754",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?",
+              "questionId": "22936",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13702",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?",
+              "questionId": "22669",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13737",
+                "mood": {
+                  "action": "",
+                  "value": 0
+                }
+              }
+            },
+            {
+              "text": "Welchen anderen Medikamente meinen Sie?",
+              "questionId": "23653",
+              "feedback": {
+                "feedback": "",
+                "nextDialogId": "13727",
+                "mood": {
+                  "action": "",
+                  "value": -5
+                }
+              }
+            }
+          ]
+        },
+        "chemmedia://expapi/questionStart": "2017-06-01T09:12:57.410Z"
+      }
+    },
+    "context": {
+      "registration": "6835d9ed-9046-4617-995a-606b635daff7",
+      "instructor": null,
+      "team": null,
+      "contextActivities": {
+        "category": null,
+        "parent": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "grouping": [
+          {
+            "objectType": "Activity",
+            "id": "http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000",
+            "definition": {
+              "name": {
+                "en-US": "conversation Pharmavertreter Beratungsgespräch - Schmerzweg"
+              },
+              "description": null,
+              "type": "http://adlnet.gov/expapi/activities/simulation",
+              "moreInfo": null,
+              "extensions": null,
+              "interactionType": null,
+              "correctResponsesPattern": null,
+              "choices": null,
+              "scale": null,
+              "source": null,
+              "target": null,
+              "steps": null
+            }
+          }
+        ],
+        "other": null
+      },
+      "revision": null,
+      "platform": null,
+      "language": null,
+      "statement": null,
+      "extensions": null
+    },
+    "timestamp": "2017-06-01T09:12:57.419Z",
+    "stored": "2017-06-01T09:12:57.897Z",
+    "authority": {
+      "name": "testuser",
+      "mbox": null,
+      "mbox_sha1sum": null,
+      "openid": null,
+      "account": {
+        "homePage": "http://cloud.scorm.com/",
+        "name": "AFoes62nHzAtr-bYSxk"
+      },
+      "degraded": false
+    },
+    "attachments": null,
+    "version": "1.0.0",
+    "degraded": false,
+    "voided": null,
+    "inProgress": null,
+    "originalJSON": "{\n    \"id\": \"0c23bbd3-572d-40fd-94a5-8d79b464e665\",\n    \"actor\": {\n        \"objectType\": \"Agent\",\n        \"mbox\": \"mailto:example@test.de\",\n        \"name\": \"ExampleActor\"\n    },\n    \"verb\": {\n        \"id\": \"http://adlnet.gov/expapi/verbs/experienced\",\n        \"display\": {\n            \"en-US\": \"experienced\"\n        }\n    },\n    \"result\": {\n        \"extensions\": {\n            \"chemmedia://expapi/dialog\": {\n                \"title\": \"\",\n                \"statement\": \"Schmerz-Weg kann auch nicht mehr als die anderen!\",\n                \"dialogId\": \"13701\",\n                \"duration\": -1,\n                \"shuffle\": false,\n                \"questions\": [\n                    {\n                        \"text\": \"Bei welchen Patienten haben Sie diese Erfahrung gemacht?\",\n                        \"questionId\": \"2471\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13760\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?\",\n                        \"questionId\": \"21905\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13791\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?\",\n                        \"questionId\": \"23631\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13754\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?\",\n                        \"questionId\": \"22936\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13702\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?\",\n                        \"questionId\": \"22669\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13737\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": 0\n                            }\n                        }\n                    },\n                    {\n                        \"text\": \"Welchen anderen Medikamente meinen Sie?\",\n                        \"questionId\": \"23653\",\n                        \"feedback\": {\n                            \"feedback\": \"\",\n                            \"nextDialogId\": \"13727\",\n                            \"mood\": {\n                                \"action\": \"\",\n                                \"value\": -5\n                            }\n                        }\n                    }\n                ]\n            },\n            \"chemmedia://expapi/questionStart\": \"2017-06-01T09:12:57.410Z\"\n        }\n    },\n    \"context\": {\n        \"registration\": \"6835d9ed-9046-4617-995a-606b635daff7\",\n        \"contextActivities\": {\n            \"grouping\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ],\n            \"parent\": [\n                {\n                    \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/conversation_1494593968000\",\n                    \"definition\": {\n                        \"name\": {\n                            \"en-US\": \"conversation Pharmavertreter Beratungsgespräch - Schmerzweg\"\n                        },\n                        \"type\": \"http://adlnet.gov/expapi/activities/simulation\"\n                    },\n                    \"objectType\": \"Activity\"\n                }\n            ]\n        }\n    },\n    \"timestamp\": \"2017-06-01T09:12:57.419Z\",\n    \"stored\": \"2017-06-01T09:12:57.897Z\",\n    \"authority\": {\n        \"objectType\": \"Agent\",\n        \"account\": {\n            \"homePage\": \"http://cloud.scorm.com/\",\n            \"name\": \"AFoes62nHzAtr-bYSxk\"\n        },\n        \"name\": \"testuser\"\n    },\n    \"version\": \"1.0.0\",\n    \"object\": {\n        \"id\": \"http://www.chemmedia.de/expapi/conversation_trainer/question_13701\",\n        \"definition\": {\n            \"name\": {\n                \"en-US\": \"question 13701\"\n            },\n            \"description\": {\n                \"de-DE\": \"Schmerz-Weg kann auch nicht mehr als die anderen!\"\n            },\n            \"type\": \"http://adlnet.gov/expapi/activities/cmi.interaction\",\n            \"interactionType\": \"choice\",\n            \"choices\": [\n                {\n                    \"id\": \"2471\",\n                    \"description\": {\n                        \"de-DE\": \"Bei welchen Patienten haben Sie diese Erfahrung gemacht?\"\n                    }\n                },\n                {\n                    \"id\": \"21905\",\n                    \"description\": {\n                        \"de-DE\": \"Haben Sie Patienten auf Schmerz-Weg eingestellt  und wie waren die Ergebnisse?\"\n                    }\n                },\n                {\n                    \"id\": \"23631\",\n                    \"description\": {\n                        \"de-DE\": \"Welche Patienten haben Sie auf Schmerz-Weg bisher eingestellt und wie waren Ihre Erfahrungen?\"\n                    }\n                },\n                {\n                    \"id\": \"22936\",\n                    \"description\": {\n                        \"de-DE\": \"Schon allein durch die Einmalgabe hebt sich Schmerz-Weg aus dem Kreis der Bronchospasmolytika  deutlich hervor. Mit welchem Medikament  vergleichen Sie?\"\n                    }\n                },\n                {\n                    \"id\": \"22669\",\n                    \"description\": {\n                        \"de-DE\": \"Mit welchen anderen Medikamenten vergleichen Sie Schmerz-Weg?\"\n                    }\n                },\n                {\n                    \"id\": \"23653\",\n                    \"description\": {\n                        \"de-DE\": \"Welchen anderen Medikamente meinen Sie?\"\n                    }\n                }\n            ]\n        },\n        \"objectType\": \"Activity\"\n    }\n}"
+  }
+]

@@ -1,0 +1,39 @@
+.node rect {
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #333;
+  stroke-opacity: .2;
+  transition: stroke-opacity 0.25s;
+}
+
+.conversation {
+  cursor: pointer;
+}
+
+#search {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+#search input {
+  font-size: 1.2rem;
+  float: right;
+  margin-right: 2rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  color: #555;
+  padding: 0.15rem 0 0.1rem 0;
+  transition: border-color 0.5s;
+}
+#search input:focus {
+  border-color: steelblue;
+}
