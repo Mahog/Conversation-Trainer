@@ -13,7 +13,7 @@ let lrs = new TinCan.LRS (
 
 lrs.queryStatements({
   params: {
-    since: "2016-01-05T08:34:16Z"
+    since: "2012-01-05T08:34:16Z"
   },
   callback: (err, sr) => {
     if (err !== null) {

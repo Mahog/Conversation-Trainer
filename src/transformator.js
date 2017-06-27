@@ -26,6 +26,12 @@ let transformator = function() {
     };
   }
 
+  /**
+   * Extract all nodes from the rawgraph. A node is either a statement by
+   * the customer or an answer by the user. Both are treated equally and can
+   * be differentiated by the 'type' property which is either 'a' (for answer)
+   * or 's' (for statements).
+   */
   function getGraphNodes() {
     let statementKeys = Object.keys(rawGraph.statements); // keys in statements
     let answerKeys = Object.keys(rawGraph.answers); // keys in answers
@@ -44,8 +50,8 @@ let transformator = function() {
         id: id,
         name: index,
         text: node.value,
-        value: 1,
-        type: 'a',
+        value: 0,
+        type: 's',
         mood: 'neutral'
       });
 
@@ -61,7 +67,7 @@ let transformator = function() {
         name: index,
         text: node.value,
         value: 1,
-        type: 'q',
+        type: 'a',
         mood: 'neutral'
       });
 
@@ -71,6 +77,10 @@ let transformator = function() {
     return nodes;
   }
 
+  /**
+   * Extract all links between nodes from the raw data. A link can be found
+   * in the 'responses' of statements or in the 'goto' property of answers.
+   */
   function getGraphLinks() {
     let links = [];
     let statementKeys = Object.keys(rawGraph.statements); // keys in statements
@@ -80,7 +90,7 @@ let transformator = function() {
     let source = null; // represents one answer or statement during iteration
     let target = null;
     let node = null;
-    let index = 0;
+    let index = 1;
     let targetIndex;
 
     for (let i in statementKeys) {
@@ -192,8 +202,11 @@ let transformator = function() {
       let trail = [c];
       let index = sortedEvents.indexOf(c);
 
-      for (let i = index - 1; i < sortedEvents.length - index; i--) {
+      // since the events are sorted by timestamp, start from the completion and
+      // go back (i--) to the launching event
+      for (let i = index - 1; i > 0; i--) {
         let event = sortedEvents[i];
+
         // check if the actor matches the on from the completion
         if (event.actor.mbox === c.actor.mbox) {
           // check if this event was the start of a conversation (>stop looking)
@@ -218,6 +231,7 @@ let transformator = function() {
         // save score of conversation in property
         if (i === t.length - 1) {
           conversation['score'] = c.result.extensions['chemmedia://expapi/moodpoints/current'];
+          conversation['timestamp'] = c.timestamp;
           continue;
         }
 
@@ -238,6 +252,9 @@ let transformator = function() {
       }
       conversations.push(conversation);
     });
+    conversations.sort(function(c1, c2) {
+      return parseInt(c1['score']) < parseInt(c2['score']);
+    });
   }
 
   /**
@@ -256,6 +273,7 @@ let transformator = function() {
   transformator.frequencyData = function(_) {
     if (!arguments.length) return rawEventData;
     rawEventData = _;
+    console.log(rawEventData)
     updateLinkValues();
     updateConversations();
     return transformator;
