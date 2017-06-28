@@ -33,6 +33,7 @@ d3.trainer = function() {
   let fisheye; // fisheye plugin
 
   let transform = d3.zoomIdentity; // the current zoom transform
+  let shiftX = 0;
 
   let timelineX = d3.scaleLinear().domain([0, 100]);
 
@@ -225,6 +226,22 @@ d3.trainer = function() {
       if (d.source.active && d.target.active) return '#333';
       else return '#ccc';
     });
+
+    // indicate whether or not a conversation contains all active filters by
+    // changing the fill: fill if true, don't fill else.
+    conversation
+      .each(function(d) {
+        d.containsAllFilters = true;
+
+        for (let f = 0; f < filters.length && d.containsAllFilters; f++)
+          d.containsAllFilters = d.indexOf(filters[f]) > -1;
+      })
+      .select('rect')
+        .attr('fill', function(d) {
+          return d['containsAllFilters']
+            ? d3.rgb(d.color).brighter(1)
+            : 'none';
+        });
 
     label.style('display', displayLabel);
   }
