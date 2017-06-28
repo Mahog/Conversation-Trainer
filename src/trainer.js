@@ -397,17 +397,22 @@ d3.trainer = function() {
       .attr('height', 10)
       .attr('transform', function(d, i) {
         d['y'] = i*20;
-        return 'translate(0,'+i*20+')';
+        return 'translate(30,'+d['y']+')';
       })
       .on('mouseover', function(d) {
         d3.select(this).attr('height', 20);
-        d3.select(this).attr('transform', 'translate(0,'+(d['y']-5)+')');
+        d3.select(this).attr('transform', 'translate(30,'+(d['y']-5)+')');
       })
       .on('mouseout', function(d) {
         d3.select(this).attr('height', 10);
-        d3.select(this).attr('transform', 'translate(0,'+(d['y'])+')');
-       })
+        d3.select(this).attr('transform', 'translate(30,'+(d['y'])+')');
+      })
       .on('click', highlightConversation);
+
+    conversation.append('text')
+      .attr('dx',  0)
+      .attr('dy', function(d, i) { return d['y'] + 12; })
+      .text(function(d) { return d['score']; });
 
     // add path, which connects the diagram to the rects on the left side
     conversation.append('path')
@@ -418,7 +423,7 @@ d3.trainer = function() {
       .attr('transform', 'translate('+conversationMargin+',0)')
       .attr('d', function(d) {
         let p = {
-          source: { x: -conversationMargin, y: d['y'], dx: conversationMargin/3 },
+          source: { x: -conversationMargin+30, y: d['y'], dx: conversationMargin/3 },
           target: d[1], // root nodes sits there whyever
           dx: 10,
           dy: 1.3,
