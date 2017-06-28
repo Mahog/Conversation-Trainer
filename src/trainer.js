@@ -12,7 +12,7 @@ d3.trainer = function() {
   const conversationMargin = 200;
 
   const minNodeDistance = 100;
-  const minZoomLevelLabel = 5;
+  const minZoomLevelLabel = 3;
   const minZoomLevelPath = 1;
 
   let data; // graph
@@ -235,13 +235,17 @@ d3.trainer = function() {
 
         for (let f = 0; f < filters.length && d.containsAllFilters; f++)
           d.containsAllFilters = d.indexOf(filters[f]) > -1;
+      });
+    conversation.select('rect')
+      .attr('fill', function(d) {
+        return d['containsAllFilters']
+          ? d3.rgb(d.color).brighter(1)
+          : 'none';
+      });
+    conversation.selectAll('path')
+      .attr('stroke-dasharray', function(d) {
+        return d.containsAllFilters ? '' : '10,10';
       })
-      .select('rect')
-        .attr('fill', function(d) {
-          return d['containsAllFilters']
-            ? d3.rgb(d.color).brighter(1)
-            : 'none';
-        });
 
     label.style('display', displayLabel);
   }
@@ -738,7 +742,7 @@ d3.trainer = function() {
   * space for texts.
   */
   function fisheyeEffect() {
-    // fisheye.focus([d3.mouse(this)[0], 0]);
+    // fisheye.focus([d3.mouse(this)[0] - transform.x - conversationMargin, 0]);
     //
     // node.each(function(d) {
     //   d.fisheye = fisheye({x: transform.applyX(d.x), y: 0});
@@ -766,15 +770,6 @@ d3.trainer = function() {
     //   .style('display', displayLabel)
     //   .select('rect')
     //     .attr('width', widthLabel);
-    //
-    // label.select('text')
-    //   .html(function(d) {
-    //     let dummyText = 'Bitte setzen Sie sich mit Ihrem Arzt zusammen, um das weitere Vorgehen bei der Behandlung Ihrer Schmerzen zu besprechen.';
-    //     let w = widthLabel(d) | Math.abs;
-    //
-    //     return d.text.substring(0, w / 10) + '...';
-    //
-    //    })
   }
 
   trainer.filterConversations = function(activeConversations) {

@@ -3,7 +3,7 @@ let timeline = function() {
   let height = 100;
 
   let svg;
-  let tick; // visual identifier for a date along the timeline
+  let line;
   let marker; // a marker representing a conversation taking place at this time
   let markers; // <g> of all markers
   let trainer = null;
@@ -16,6 +16,10 @@ let timeline = function() {
 
   const brush = d3.brushX()
     .on("brush end", brushed);
+
+  const rankColor = d3.scaleLinear()
+    .domain([0, 20])
+    .range(['#f33', '#3f3']);
 
 
   function timeline(selection) {
@@ -32,32 +36,17 @@ let timeline = function() {
 
 
   function drawTimeline() {
-    let timeTicks = time.ticks(15);
+    line = svg.append('g')
+      .attr('class', 'timeline')
+      .attr('transform', 'translate(0,'+height+')')
+      .call(d3.axisTop(time));
 
-    svg.append('rect')
-      .attr('x', 0)
-      .attr('width', width)
-      .attr('height', height)
-      .attr('fill', 'transparent')
-      .attr('stroke', '#ccc');
-
-    ticks = svg.append('g').attr('class', 'ticks');
-
-    tick = ticks.selectAll('marker').data(timeTicks).enter()
-      .append('g')
-        .attr('transform', function(d) { return 'translate('+time(d)+',0)'});
-
-    tick.append('path')
-      .attr('stroke', '#888')
-      .attr('stroke-width', '2px')
-      .attr('stroke-dasharray', '2,2')
-      .attr('d', 'M0,0L0,'+height+'');
-
-    tick.append('text')
-      .attr('font-size', 12)
-      .attr('text-anchor', 'middle')
-      .attr('dy', height - 5)
-      .text(function(d) { return d.toDateString(); })
+    line.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('stroke', '#555')
+        .attr('fill', 'transparent')
+        .attr('transform', 'translate(0,'+-height+')');
   }
 
   function drawMarkers() {
@@ -66,7 +55,7 @@ let timeline = function() {
     marker = markers.selectAll('.marker').data(data).enter()
       .append('path')
         .attr('class', 'marker')
-        .attr('stroke', 'red')
+        .attr('stroke', function(d) { return rankColor(d.score); })
         .attr('d', 'M0,0L0,'+height)
         .attr('transform', function(d) {
           return 'translate('+time(new Date(d['timestamp']))+',0)';
