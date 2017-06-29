@@ -20,14 +20,12 @@
   stroke: #aaa;
   stroke-width: 2;
 }
-.conversation.active:hover circle {
-  stroke: teal;
-}
 .conversation.active circle,
 .conversation.hover circle {
   stroke-width: 7;
 }
-.conversation.hover path {
+.conversation.hover path,
+.conversation.hover circle {
   stroke: teal;
 }
 

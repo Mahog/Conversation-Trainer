@@ -1,5 +1,5 @@
 let zoomControl = function() {
-  let width = 200;
+  let width = 150;
   let height = 40;
 
   let svg;
@@ -35,8 +35,8 @@ let zoomControl = function() {
 
     zoomInBtn = svg.append('g')
       .attr('class', 'zoomBtn in')
-      .attr('transform', 'translate('+(width*0.75)+','+(height/2)+')')
-      .on('click', function() { zoom(+0.5); })
+      .attr('transform', 'translate('+(width*0.85)+','+(height/2)+')')
+      .on('click', function() { zoom(1.5); })
       .on('mouseover', function() { hoverEffect(this, 0.3); })
       .on('mouseout', function() { hoverEffect(this, 0); });
 
@@ -58,8 +58,8 @@ let zoomControl = function() {
 
     zoomOutBtn = svg.append('g')
       .attr('class', 'zoomBtn out')
-      .attr('transform', 'translate('+(width*0.25)+','+(height/2)+')')
-      .on('click', function() { zoom(-0.5); })
+      .attr('transform', 'translate('+(width*0.15)+','+(height/2)+')')
+      .on('click', function() { zoom(1 / 1.5); })
       .on('mouseover', function() { hoverEffect(this, 0.3); })
       .on('mouseout', function() { hoverEffect(this, 0); });
 
@@ -82,7 +82,7 @@ let zoomControl = function() {
 
   function zoom(k) {
     if (zoomLevel < 1.0) return;
-    zoomLevel += k;
+    zoomLevel *= k;
 
     zoomClients.forEach(function(c) { c.zoomBy(k); });
     levelText.text(parseInt(zoomLevel*100) + '%');

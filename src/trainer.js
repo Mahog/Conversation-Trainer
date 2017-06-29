@@ -404,18 +404,20 @@ d3.trainer = function() {
         .append('g')
           .attr('class', 'conversation')
           .on('mouseover', function(d) {
-            d3.select(this).classed('hover', true);
+            d3.select(this).classed('hover', true)
+              .select('circle').style('stroke', 'teal')
             this.parentNode.appendChild(this);
           })
           .on('mouseout', function(d) {
-            d3.select(this).classed('hover', false);
+            d3.select(this).classed('hover', false)
+              .select('circle').style('stroke', function(d) { return  d.color; })
           });
 
     // add the conversation-identifier on the left side of the diagram,
     // which can be clicked to highlight the related path ontop of the diagram
     conversation.append('circle')
-      .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
-      .attr('fill', function(d) { return d3.rgb(d.color); })
+      .attr('fill', function(d) { return d3.rgb(d.color=rankColor(d['score'])); })
+      .style('stroke', function(d) { return  d.color; })
       .attr('cx', 15)
       .attr('cy', function(d, i) { return d['y'] = i * 25; })
       .attr('r', 7)
@@ -781,7 +783,7 @@ d3.trainer = function() {
   trainer.zoomBy = function(k) {
     if (!arguments.length) trainer;
 
-    let targetZoom = transform.k + k;
+    let targetZoom = transform.k * k;
 
     zoom.scaleTo(svg, targetZoom, 0); // yields 'zoom' event
     return trainer;
