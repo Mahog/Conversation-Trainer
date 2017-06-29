@@ -118,8 +118,8 @@ d3.trainer = function() {
 
     drawSinks();
     drawLinks();
-    drawConversations();
     drawNodes();
+    drawConversations();
     drawScrollbar();
   }
 
@@ -384,48 +384,30 @@ d3.trainer = function() {
     // conversation is a group containing the rect and the path
     conversation = diagram.append('g')
       .attr('class', 'conversations')
+      .attr('transform', 'translate(0, 10)')
       .selectAll('.conversation').data(conversations).enter()
         .append('g')
-          .attr('class', 'conversation');
-
-    // add the conversation-identifier on the left side of the diagram,
-    // which can be clicked to highlight the related path ontop of the diagram
-    conversation.append('rect')
-      .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
-      .attr('fill', function(d) { return d3.rgb(d.color).brighter(1)})
-      .attr('width', conversationMargin/3)
-      .attr('height', 10)
-      .attr('transform', function(d, i) {
-        d['y'] = i*20;
-        return 'translate(30,'+d['y']+')';
-      })
-      .on('mouseover', function(d) {
-        d3.select(this).attr('height', 20);
-        d3.select(this).attr('transform', 'translate(30,'+(d['y']-5)+')');
-      })
-      .on('mouseout', function(d) {
-        d3.select(this).attr('height', 10);
-        d3.select(this).attr('transform', 'translate(30,'+(d['y'])+')');
-      })
-      .on('click', highlightConversation);
-
-    conversation.append('text')
-      .attr('dx',  0)
-      .attr('dy', function(d, i) { return d['y'] + 12; })
-      .text(function(d) { return d['score']; });
+          .attr('class', 'conversation')
+          .on('click', function() {
+            d3.select(this).classed('active', !d3.select(this).classed('active'));
+          })
+          .on('mouseover', function(d) {
+            d3.select(this).classed('hover', true);
+          })
+          .on('mouseout', function(d) {
+            d3.select(this).classed('hover', false);
+          });
 
     // add path, which connects the diagram to the rects on the left side
     conversation.append('path')
-      .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
-      .attr('stroke-width', 2)
       .attr('fill', 'none')
       .style('display', 'none')
-      .attr('transform', 'translate('+conversationMargin+',0)')
-      .attr('d', function(d) {
+      .attr('transform', 'translate('+conversationMargin+', 0)')
+      .attr('d', function(d, i) {
         let p = {
-          source: { x: -conversationMargin+30, y: d['y'], dx: conversationMargin/3 },
+          source: { x: 0, y: d['y'] = i * 25, dx: -conversationMargin },
           target: d[1], // root nodes sits there whyever
-          dx: 10,
+          dx: conversationMargin,
           dy: 1.3,
           sy: 1.3,
           ty: 1.3,
@@ -435,12 +417,25 @@ d3.trainer = function() {
         return sankey.link()(p)
       });
 
+    // add the conversation-identifier on the left side of the diagram,
+    // which can be clicked to highlight the related path ontop of the diagram
+    conversation.append('circle')
+      .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
+      .attr('fill', function(d) { return d3.rgb(d.color).brighter(2); })
+      .attr('cx', 0)
+      .attr('cy', function(d, i) { return d['y']; })
+      .attr('r', 5)
+      .on('click', highlightConversation);
+
+    // add a tooltip with the score for this conversation
+    conversation.append('title')
+      .text(function(d) { return d['score']; });
+
     // add the path, which consists of segments of links that are joined in
     // one d-path
     conversation.append('path')
       .attr('class', 'highlight')
-        .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
-      .attr('stroke-width', 2)
+      .attr('stroke-width', 1)
       .attr('fill', 'none')
       .style('display', 'none')
       .attr('transform', 'translate('+conversationMargin+',0)')
@@ -687,12 +682,17 @@ d3.trainer = function() {
 
     transform = d3.event.transform;
 
+
     fisheye.distortion(1/transform.k * 10);
     if (dragging) {
       diagram.attr('transform', 'translate('+transform.x+',0)');
+      conversation.selectAll('circle')
+        .attr('transform', 'translate('+-transform.x+',0)');
     } else {
       diagram.transition().duration(250)
         .attr('transform', 'translate('+transform.x+',0)');
+      conversation.selectAll('circle').transition().duration(250)
+        .attr('transform', 'translate('+-transform.x+',0)');
 
       node.transition().duration(250)
         .attr('transform', function(d) {

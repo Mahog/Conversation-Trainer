@@ -17,6 +17,21 @@
 .conversation {
   cursor: pointer;
 }
+.conversation path {
+  stroke: #888;
+  stroke-width: 2;
+}
+.conversation.active:hover circle {
+  stroke: red;
+}
+.conversation.active circle,
+.conversation.hover circle {
+  stroke-width: 5;
+}
+.conversation.active path,
+.conversation.hover path {
+  stroke: red;
+}
 
 #search {
   width: 100%;
