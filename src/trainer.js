@@ -687,29 +687,34 @@ d3.trainer = function() {
 
     transform = d3.event.transform;
 
-    diagram.attr('transform', 'translate('+transform.x+',0)');
-
     fisheye.distortion(1/transform.k * 10);
-    if (!dragging) {
-      node.attr('transform', function(d) {
-        let zoomedX = transform.applyX(d.x) - transform.x;
-        d.fisheye = {x: zoomedX};
-        return 'translate(' + zoomedX + ',' + d.y + ')';
-      });
+    if (dragging) {
+      diagram.attr('transform', 'translate('+transform.x+',0)');
+    } else {
+      diagram.transition().duration(250)
+        .attr('transform', 'translate('+transform.x+',0)');
 
-      sink.attr('transform', function(d) {
-        let x = transform.applyX(d[0].x) - transform.x;
-        return 'translate('+x+',0)'
-      });
+      node.transition().duration(250)
+        .attr('transform', function(d) {
+          let zoomedX = transform.applyX(d.x) - transform.x;
+          d.fisheye = {x: zoomedX};
+          return 'translate(' + zoomedX + ',' + d.y + ')';
+        });
 
-      link.attr('d', path);
+      sink.transition().duration(250)
+        .attr('transform', function(d) {
+          let x = transform.applyX(d[0].x) - transform.x;
+          return 'translate('+x+',0)'
+        });
+
+      link.transition().duration(250).attr('d', path);
 
       label
         .style('display', displayLabel)
         .selectAll('rect')
           .attr('width', widthLabel);
 
-      conversation.select('.highlight')
+      conversation.select('.highlight').transition().duration(250)
         .attr('d', conversationPath)
     }
 
