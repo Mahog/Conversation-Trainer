@@ -9,8 +9,6 @@ d3.trainer = function() {
     left: 10
   }; // default margins
 
-  const conversationMargin = 200;
-
   const minNodeDistance = 100;
   const minZoomLevelLabel = 3;
   const minZoomLevelPath = 1;
@@ -43,11 +41,12 @@ d3.trainer = function() {
 
   const color = d3.scaleOrdinal()
     .domain(['negative', 'neutral', 'positive'])
-    .range(['#ef5350', '#ffee58', '#66bb6a']);
+    .range(['#eb665f', '#ebd35f', '#58c14d']);
 
-  const rankColor = d3.scaleLinear()
-    .domain([0, 20])
-    .range(['#f33', '#3f3']);
+  const rankColor = d3.scaleQuantize()
+    .domain([0, 35])
+    .range(['#c04741','#e9756f','#ffa49f','#e9d46f','#ffef9f','#e9d46f',
+            '#b8bab3','#8fd987','#64bf5b','#3f9d35']);
 
   const zoom = d3.zoom()
     .scaleExtent([1, 15])
@@ -82,10 +81,10 @@ d3.trainer = function() {
     sankey = d3.sankey()
       .nodeWidth(10)
       .nodePadding(10)
-      .size([width - conversationMargin, height-margin.bottom])
+      .size([width, height-margin.bottom])
       .nodes(data.nodes)
       .links(data.links)
-      .layout(32);
+      .layout(50);
 
     fisheye = d3.fisheye.circular()
       .radius(2 * minNodeDistance)
@@ -121,6 +120,7 @@ d3.trainer = function() {
     drawNodes();
     drawConversations();
     drawScrollbar();
+    updateQuery();
   }
 
   function updateQuery() {
@@ -203,44 +203,45 @@ d3.trainer = function() {
 
   function updateView() {
     node.transition().duration(100)
-      .style('fill-opacity', function(d) {
-        if (d.selected && !d.active) return 0.73;
-        if (d.active === null) return 1.0;
-        return d.active ? '1.0' : '0.15';
-      })
-      .selectAll('.box').transition()
-        .attr('width', function(d) {
-          if (d.active === null) return sankey.nodeWidth();
-          return d.selected ? 3*sankey.nodeWidth() : sankey.nodeWidth();
-        })
-        .attr('x', function(d) {
-          return d.selected ? -sankey.nodeWidth() : 0;
-        })
-        .style('stroke', function(d) {
-          let c = d3.rgb(d.color);
-          return d.active ? c.darker(5) : c.darker(1);
+      .selectAll('.box').transition().duration(250)
+        .style('fill', fillNode)
+        .attr('stroke-width', function(d) {
+          return (d.active) ? 2 : 1;
         });
 
-    link.style('stroke', function(d) {
-      if (d.source.active === null) return '#333';
-      if (d.source.active && d.target.active) return '#333';
-      else return '#ccc';
-    });
+    link.attr('stroke', strokeLink);
 
     // indicate whether or not a conversation contains all active filters by
     // changing the fill: fill if true, don't fill else.
     conversation
       .each(function(d) {
+        // group all filters by their sinks, then check if the conversation
+        // contains at least one filter per sink
+
+        let sinkFilters = {};
+        filters.forEach(function(f) {
+          if (typeof sinkFilters[f.sink] === typeof undefined)
+            sinkFilters[f.sink] = [];
+
+          sinkFilters[f.sink].push(f);
+        });
+
         d.containsAllFilters = true;
 
-        for (let f = 0; f < filters.length && d.containsAllFilters; f++)
-          d.containsAllFilters = d.indexOf(filters[f]) > -1;
+        for (let s in sinkFilters) {
+          let sf = sinkFilters[s]; // array of filters on this sink
+          let hasFilterOnSink = false;
+          for (let f = 0; f < sf.length; f++) {
+            hasFilterOnSink = d.indexOf(sf[f]) > -1 || hasFilterOnSink;
+          }
+          d.containsAllFilters = d.containsAllFilters && hasFilterOnSink;
+        }
       });
-    conversation.select('rect')
+    conversation.select('circle')
       .attr('fill', function(d) {
         return d['containsAllFilters']
-          ? d3.rgb(d.color).brighter(1)
-          : 'none';
+          ? d3.rgb(d.color)
+          : '#fff';
       });
     conversation.selectAll('path')
       .attr('stroke-dasharray', function(d) {
@@ -255,7 +256,6 @@ d3.trainer = function() {
   */
   function drawNodes() {
     node = diagram.append('g')
-      .attr('transform', 'translate('+conversationMargin+',0)')
       .selectAll('.node')
       .data(data.nodes)
       .enter().append('g')
@@ -292,17 +292,7 @@ d3.trainer = function() {
       .attr('width', sankey.nodeWidth())
       .style('fill', fillNode)
       .style('stroke', strokeNode)
-      .on('mouseover', function() {
-        d3.select(this).transition()
-          .attr('width', 3*sankey.nodeWidth())
-          .attr('x', -sankey.nodeWidth());
-        })
-      .on('mouseout', function(d) {
-        if (!d.selected)
-          d3.select(this).transition()
-            .attr('width', sankey.nodeWidth())
-            .attr('x', 0);
-        })
+      .attr('stroke-width', 1)
       .append('title')
         .text(function(d) {
           return d.text
@@ -321,7 +311,7 @@ d3.trainer = function() {
       .attr('y', 0)
       .attr('height', 25)
       .attr('fill', '#fff')
-      .attr('fill-opacity', 0.73)
+      .attr('fill-opacity', 0.9)
       .attr('stroke', '#ccc');
     // the label's text
     label.append('text')
@@ -342,15 +332,15 @@ d3.trainer = function() {
   */
   function drawLinks() {
     link = diagram.append('g')
-      .attr('transform', 'translate('+conversationMargin+',0)')
       .selectAll('.link')
       .data(data.links)
       .enter().append('path')
       .attr('class', 'link')
-      .attr('d', path)
-      .style('stroke-width', function(d) {
+      .attr('stroke', strokeLink)
+      .attr('stroke-width', function(d) {
         return Math.max(1, d.dy);
       })
+      .attr('d', path)
       .sort(function(a, b) {
         return b.dy - a.dy;
       });
@@ -361,12 +351,21 @@ d3.trainer = function() {
       });
   }
 
+  function strokeLink(d) {
+    if (transform.k > minZoomLevelPath) {
+      if (d.source.active === null) return '#555';
+      if (d.source.active && d.target.active) return '#555';
+      else return '#eee';
+    }
+    else
+      return 'rgba(0,0,0,0)'
+  }
+
   /**
   * Draws sinks, which are vertical axes that hold a set of nodes.
   */
   function drawSinks() {
     sink = diagram.append('g')
-      .attr('transform', 'translate('+conversationMargin+',0)')
       .selectAll('.sink')
       .data(sankey.sinks()).enter().append('path')
         .attr('stroke', '#333')
@@ -382,15 +381,20 @@ d3.trainer = function() {
 
   function drawConversations() {
     // conversation is a group containing the rect and the path
-    conversation = diagram.append('g')
+    let root = diagram.append('g')
       .attr('class', 'conversations')
-      .attr('transform', 'translate(0, 10)')
-      .selectAll('.conversation').data(conversations).enter()
+      .attr('transform', 'translate(0, 10)');
+
+    root.append('rect')
+      .attr('class', 'conv_background')
+      .attr('width', 30)
+      .attr('y', -25)
+      .attr('height', (conversations.length+1) * 25)
+      .attr('fill', 'rgba(255,255,255,0.73)');
+
+    conversation = root.selectAll('.conversation').data(conversations).enter()
         .append('g')
           .attr('class', 'conversation')
-          .on('click', function() {
-            d3.select(this).classed('active', !d3.select(this).classed('active'));
-          })
           .on('mouseover', function(d) {
             d3.select(this).classed('hover', true);
           })
@@ -398,34 +402,19 @@ d3.trainer = function() {
             d3.select(this).classed('hover', false);
           });
 
-    // add path, which connects the diagram to the rects on the left side
-    conversation.append('path')
-      .attr('fill', 'none')
-      .style('display', 'none')
-      .attr('transform', 'translate('+conversationMargin+', 0)')
-      .attr('d', function(d, i) {
-        let p = {
-          source: { x: 0, y: d['y'] = i * 25, dx: -conversationMargin },
-          target: d[1], // root nodes sits there whyever
-          dx: conversationMargin,
-          dy: 1.3,
-          sy: 1.3,
-          ty: 1.3,
-          x: 0,
-          y: 0
-        }
-        return sankey.link()(p)
-      });
-
     // add the conversation-identifier on the left side of the diagram,
     // which can be clicked to highlight the related path ontop of the diagram
     conversation.append('circle')
       .attr('stroke', function(d) { return d.color = rankColor(d['score']); })
-      .attr('fill', function(d) { return d3.rgb(d.color).brighter(2); })
-      .attr('cx', 0)
-      .attr('cy', function(d, i) { return d['y']; })
-      .attr('r', 5)
-      .on('click', highlightConversation);
+      .attr('fill', function(d) { return d3.rgb(d.color); })
+      .attr('cx', 15)
+      .attr('cy', function(d, i) { return d['y'] = i * 25; })
+      .attr('r', 7)
+      .on('click', function(d) {
+        let parent = d3.select(this.parentNode);
+        parent.classed('active', !parent.classed('active'));
+        highlightConversation(this, d);
+      })
 
     // add a tooltip with the score for this conversation
     conversation.append('title')
@@ -438,12 +427,10 @@ d3.trainer = function() {
       .attr('stroke-width', 1)
       .attr('fill', 'none')
       .style('display', 'none')
-      .attr('transform', 'translate('+conversationMargin+',0)')
       .attr('d', conversationPath);
   }
 
-  function highlightConversation(d) {
-    if (transform.k < minZoomLevelPath) return;
+  function highlightConversation(that, d) {
 
     if (typeof d['active'] === typeof undefined)
       d['active'] = true;
@@ -451,9 +438,9 @@ d3.trainer = function() {
       d['active'] = !d['active'];
 
     if (d['active']) {
-      d3.select(this.parentNode).selectAll('path').style('display', 'block');
+      d3.select(that.parentNode).selectAll('path').style('display', 'block');
     } else {
-      d3.select(this.parentNode).selectAll('path').style('display', 'none');
+      d3.select(that.parentNode).selectAll('path').style('display', 'none');
     }
   }
 
@@ -487,26 +474,10 @@ d3.trainer = function() {
   }
 
   /**
-  * Draw a path between two nodes only if they are apart at least
-  * minNodeDistance. If not, draw nothing.
+  * Draw a path between two nodes.
   */
   function path(d) {
-
-    // if(Math.abs(d.source.x - d.target.x) > minNodeDistance)
-    //   return sankey.link()(d);
-    //
-    // else if (typeof d.source.fisheye !== typeof undefined) {
-    //   // get the screen coordinates after zoom transform
-    //   let srcX = transform.applyX(d.source.fisheye.x);
-    //   let trgX = transform.applyX(d.target.fisheye.x);
-    //
-    //   // check if distance is sufficient
-    //   if (Math.abs(srcX - trgX) > minNodeDistance)
-    //     return sankey.link()(d);
-    // }
-
-    if (transform.k > minZoomLevelPath)
-      return sankey.link()(d);
+    return sankey.link()(d);
   }
 
   /**
@@ -533,21 +504,11 @@ d3.trainer = function() {
   function displayLabel(d) {
     if (d.active === false) return 'none';
     if (typeof d.fisheye === typeof undefined) return 'none';
-    // if (!d.fisheye.distorted) return 'none';
 
     if (transform.k > minZoomLevelLabel)
       return 'block';
     else
       return 'none';
-    // let srcX = d.fisheye.x;
-    // let trgX = d.sourceLinks[0].target.fisheye.x;
-    //
-    // if (Math.abs(srcX - trgX) > minNodeDistance) {
-    //   this.parentNode.appendChild(this);
-    //   return 'block'
-    // }
-    // else
-    //   return 'none';
   }
 
   function widthLabel(d) {
@@ -600,8 +561,13 @@ d3.trainer = function() {
       let zoomedX = transform.applyX(n.x) - transform.x;
       return 'translate(' +zoomedX+ ',' + n.y + ')';
     });
+
+    // update paths
     sankey.relayout();
-    link.transition().duration(200).attr('d', path);
+    link.transition().duration(200)
+      .attr('d', path);
+    conversation.selectAll('path').transition().duration(200)
+      .attr('d', conversationPath);
 
     let labelText = d3.select(this).select('text');
     if (!d.fullLabel) { // show only short version of the text
@@ -645,11 +611,14 @@ d3.trainer = function() {
   * representing the  mood. For questions, return uniform fill color.
   */
   function fillNode(d) {
-    if (d.type === 's') {
-      return d.color = color(d.mood);
-    }
-    else
-      return d.color = 'white';
+    d.color = (d.type === 's') ? color(d.mood) : '#333';
+    let fillColor = '#fff';
+
+    if (typeof d.selected !== typeof undefined && d.selected)
+      fillColor = (d.type === 'a') ? '#aaa' : d3.color(d.color).brighter(0.5);
+
+
+    return fillColor;
   }
 
   /**
@@ -657,7 +626,7 @@ d3.trainer = function() {
   * of this value for the stroke
   */
   function strokeNode(d) {
-    return d3.rgb(d.color).darker(0.73);
+    return d3.rgb(d.color);
   }
 
   /**
@@ -671,6 +640,7 @@ d3.trainer = function() {
 
     sankey.relayout();
     link.attr('d', path);
+    conversation.selectAll('path').attr('d', conversationPath);
   }
 
   /**
@@ -682,15 +652,18 @@ d3.trainer = function() {
 
     transform = d3.event.transform;
 
-
     fisheye.distortion(1/transform.k * 10);
     if (dragging) {
       diagram.attr('transform', 'translate('+transform.x+',0)');
+      svg.selectAll('.conv_background')
+        .attr('transform', 'translate('+-transform.x+',0)');
       conversation.selectAll('circle')
         .attr('transform', 'translate('+-transform.x+',0)');
     } else {
       diagram.transition().duration(250)
         .attr('transform', 'translate('+transform.x+',0)');
+      svg.selectAll('.conv_background').transition().duration(250)
+        .attr('transform', 'translate('+-transform.x+',0)');
       conversation.selectAll('circle').transition().duration(250)
         .attr('transform', 'translate('+-transform.x+',0)');
 
@@ -707,7 +680,9 @@ d3.trainer = function() {
           return 'translate('+x+',0)'
         });
 
-      link.transition().duration(250).attr('d', path);
+      link.transition().duration(250)
+        .attr('d', path)
+        .attr('stroke', strokeLink);
 
       label
         .style('display', displayLabel)

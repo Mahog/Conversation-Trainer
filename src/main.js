@@ -5,7 +5,7 @@ let margin = {
         left: 10
       },
       width = document.body.clientWidth - margin.left - margin.right,
-      height = window.innerHeight - margin.top - margin.bottom - 120;
+      height = window.innerHeight - margin.top - margin.bottom - 20;
 
 svg = d3.select('#chart').append('svg')
   .attr('width', width + margin.left + margin.right)
@@ -28,7 +28,7 @@ d3.json('./data/conversation_chemmedia.json', function(energy) {
     trainer
       .data(trans.graph())
       .conversations(trans.conversations());
-      
+
     svg.call(trainer);
   })
 });

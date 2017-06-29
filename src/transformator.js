@@ -66,7 +66,7 @@ let transformator = function() {
         id: id,
         name: index,
         text: node.value,
-        value: 1,
+        value: 0,
         type: 'a',
         mood: 'neutral'
       });

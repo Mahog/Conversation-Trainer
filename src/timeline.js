@@ -11,7 +11,7 @@ let timeline = function() {
   let data;
 
   const time = d3.scaleTime()
-    .domain([new Date('2017-05-01'), new Date('2017-07-31')])
+    .domain([new Date('2017-06-01'), new Date('2017-07-31')])
     .range([0, width]);
 
   const brush = d3.brushX()
@@ -26,6 +26,7 @@ let timeline = function() {
     svg = selection.append('g')
       .attr('class', 'timeline');
 
+    drawBackground();
     drawTimeline();
     drawMarkers();
 
@@ -34,19 +35,18 @@ let timeline = function() {
       .call(brush);
   }
 
+  function drawBackground() {
+    svg.append('rect')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('fill', '#efefef');
+  }
 
   function drawTimeline() {
     line = svg.append('g')
       .attr('class', 'timeline')
-      .attr('transform', 'translate(0,'+height+')')
+      .attr('transform', 'translate(0,'+(height-1)+')')
       .call(d3.axisTop(time));
-
-    line.append('rect')
-        .attr('width', width)
-        .attr('height', height)
-        .attr('stroke', '#555')
-        .attr('fill', 'transparent')
-        .attr('transform', 'translate(0,'+-height+')');
   }
 
   function drawMarkers() {
@@ -55,7 +55,7 @@ let timeline = function() {
     marker = markers.selectAll('.marker').data(data).enter()
       .append('path')
         .attr('class', 'marker')
-        .attr('stroke', function(d) { return rankColor(d.score); })
+        .attr('stroke', 'teal')
         .attr('d', 'M0,0L0,'+height)
         .attr('transform', function(d) {
           return 'translate('+time(new Date(d['timestamp']))+',0)';
