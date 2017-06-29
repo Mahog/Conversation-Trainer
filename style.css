@@ -31,6 +31,10 @@
   stroke: teal;
 }
 
+.zoomBtn:hover {
+  cursor: pointer;
+}
+
 #search {
   width: 100%;
   display: inline-block;

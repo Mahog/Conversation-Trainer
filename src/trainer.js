@@ -26,6 +26,7 @@ d3.trainer = function() {
   let label; // a label right next to a node with a brief message
   let scrollbar;
   let scrollHandle;
+  let zoomPanel;
 
   let sankey; // sankey diagram object
   let fisheye; // fisheye plugin
@@ -62,11 +63,11 @@ d3.trainer = function() {
   const scroll = d3.drag()
     .on('start', function() {
       d3.select(this).attr('data-x', d3.mouse(this.parentNode)[0]);
-      d3.select(this).transition().attr('fill', '#cef').attr('stroke', '#8fa7b3');
+      d3.select(this).transition().attr('fill', 'rgba(0, 128, 128, 0.12)');
     })
     .on('drag', scrolled)
     .on('end', function() {
-      d3.select(this).transition().attr('fill', '#fff').attr('stroke', '#ccc');
+      d3.select(this).transition().attr('fill', 'rgba(0, 128, 128, 0)');
     });
 
 
@@ -114,6 +115,13 @@ d3.trainer = function() {
     svg.append('g')
       .attr('transform', 'translate(0,'+(height+50)+')')
       .call(timeAxis);
+
+    zoomPanel = zoomControl()
+      .registerZoomClient(trainer);
+
+    svg.append('g')
+      .attr('transform', 'translate('+(width-200)+','+(height-50)+')')
+      .call(zoomPanel);
 
     drawSinks();
     drawLinks();
@@ -397,6 +405,7 @@ d3.trainer = function() {
           .attr('class', 'conversation')
           .on('mouseover', function(d) {
             d3.select(this).classed('hover', true);
+            this.parentNode.appendChild(this);
           })
           .on('mouseout', function(d) {
             d3.select(this).classed('hover', false);
@@ -468,7 +477,7 @@ d3.trainer = function() {
       .attr('y', 0)
       .attr('data-x', 0)
       .attr('height', 20)
-      .attr('stroke', '#ccc')
+      .attr('stroke', 'teal')
       .attr('fill', '#fff')
       .call(scroll);
   }
@@ -706,6 +715,8 @@ d3.trainer = function() {
       else
         scrollbar.transition().style('opacity', 0.0);
     }
+
+    zoomPanel.zoomLevel(transform.k);
   }
 
   /**
@@ -765,6 +776,15 @@ d3.trainer = function() {
     });
 
     return trainer
+  }
+
+  trainer.zoomBy = function(k) {
+    if (!arguments.length) trainer;
+
+    let targetZoom = transform.k + k;
+
+    zoom.scaleTo(svg, targetZoom, 0); // yields 'zoom' event
+    return trainer;
   }
 
   // GETTERS AND SETTERS ///////////////////////////////////////////////////////
