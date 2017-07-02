@@ -121,7 +121,7 @@ d3.trainer = function() {
       .registerZoomClient(trainer);
 
     svg.append('g')
-      .attr('transform', 'translate('+(width-200)+','+(0)+')')
+      .attr('transform', 'translate('+(width-140)+','+(0)+')')
       .call(zoomPanel);
 
     drawSinks();

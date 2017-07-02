@@ -1,8 +1,9 @@
 let zoomControl = function() {
   let width = 150;
-  let height = 40;
+  let height = 30;
 
   let svg;
+  let root;
   let zoomInBtn;
   let zoomOutBtn;
   let levelText;
@@ -17,13 +18,15 @@ let zoomControl = function() {
   }
 
   function drawBackground() {
-    svg.append('rect')
+    root = svg.append('g').attr('class', 'zoomPanel');
+
+    root.append('rect')
       .attr('width', width)
       .attr('height', height)
       .attr('fill', 'rgba(255,255,255,0.73)')
       .attr('stroke', 'none');
 
-    levelText = svg.append('text')
+    levelText = root.append('text')
       .attr('dx', width / 2)
       .attr('dy', height / 2 + 6)
       .attr('text-anchor', 'middle')
@@ -31,9 +34,9 @@ let zoomControl = function() {
   }
 
   function drawButtons() {
-    let radius = height / 2 - 5;
+    let radius = height / 2 - 3;
 
-    zoomInBtn = svg.append('g')
+    zoomInBtn = root.append('g')
       .attr('class', 'zoomBtn in')
       .attr('transform', 'translate('+(width*0.85)+','+(height/2)+')')
       .on('click', function() { zoom(1.5); })
@@ -56,7 +59,7 @@ let zoomControl = function() {
       .attr('font-weight', 'bold')
       .text('+');
 
-    zoomOutBtn = svg.append('g')
+    zoomOutBtn = root.append('g')
       .attr('class', 'zoomBtn out')
       .attr('transform', 'translate('+(width*0.15)+','+(height/2)+')')
       .on('click', function() { zoom(1 / 1.5); })

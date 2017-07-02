@@ -29,7 +29,9 @@
   stroke: #1de9b6;
   stroke-width: 4;
 }
-
+.zoomPanel text {
+  fill: #555;
+}
 .zoomBtn:hover {
   cursor: pointer;
 }
