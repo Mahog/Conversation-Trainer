@@ -50,7 +50,7 @@ let transformator = function() {
         id: id,
         name: index,
         text: node.value,
-        value: 0,
+        value: 1,
         type: 's',
         mood: 'neutral'
       });
@@ -66,7 +66,7 @@ let transformator = function() {
         id: id,
         name: index,
         text: node.value,
-        value: 0,
+        value: 1,
         type: 'a',
         mood: 'neutral'
       });
@@ -156,16 +156,6 @@ let transformator = function() {
       transformedAnswers.push({
         source: answer.result.extensions['chemmedia://expapi/dialog'].dialogId,
         target: answer.result.extensions['chemmedia://expapi/questionId']
-      });
-    });
-
-    transformedAnswers.forEach(function(answer) {
-      transformedGraph.links.map(function(link) {
-        let aMatch = link.source.type === 'a' && link.source.id === answer.target;
-        let qMatch = link.source.type === 'q' && link.target.id === answer.target;
-
-        // if(aMatch || qMatch)
-          // link.value++;
       });
     });
   }

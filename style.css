@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 .conversation path {
-  stroke: #aaa;
+  stroke: teal;
   stroke-width: 2;
 }
 .conversation.active circle,
@@ -27,6 +27,7 @@
 .conversation.hover path,
 .conversation.hover circle {
   stroke: #1de9b6;
+  stroke-width: 4;
 }
 
 .zoomBtn:hover {

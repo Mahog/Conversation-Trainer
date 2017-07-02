@@ -81,10 +81,11 @@ d3.trainer = function() {
 
     sankey = d3.sankey()
       .nodeWidth(10)
-      .nodePadding(10)
+      .nodePadding(12)
       .size([width, height-margin.bottom])
       .nodes(data.nodes)
       .links(data.links)
+      .conversations(conversations)
       .layout(50);
 
     fisheye = d3.fisheye.circular()
@@ -253,7 +254,7 @@ d3.trainer = function() {
       });
     conversation.selectAll('path')
       .attr('stroke-dasharray', function(d) {
-        return d.containsAllFilters ? '1' : '10,10';
+        return d.containsAllFilters ? 'none' : '10,10';
       })
 
     label.style('display', displayLabel);
@@ -395,10 +396,10 @@ d3.trainer = function() {
 
     root.append('rect')
       .attr('class', 'conv_background')
-      .attr('width', 30)
-      .attr('y', -25)
-      .attr('height', (conversations.length+1) * 25)
-      .attr('fill', 'rgba(255,255,255,0.73)');
+      .attr('x', -30)
+      .attr('width', (conversations.length+1) * 25)
+      .attr('height', 30)
+      .attr('fill', 'rgba(253,253,253,0.73)');
 
     conversation = root.selectAll('.conversation').data(conversations).enter()
         .append('g')
@@ -418,8 +419,8 @@ d3.trainer = function() {
     conversation.append('circle')
       .attr('fill', function(d) { return d3.rgb(d.color=rankColor(d['score'])); })
       .style('stroke', function(d) { return  d.color; })
-      .attr('cx', 15)
-      .attr('cy', function(d, i) { return d['y'] = i * 25; })
+      .attr('cx', function(d, i) { return d['x'] = i * 25; })
+      .attr('cy', 15)
       .attr('r', 7)
       .on('click', function(d) {
         let parent = d3.select(this.parentNode);
@@ -435,7 +436,6 @@ d3.trainer = function() {
     // one d-path
     conversation.append('path')
       .attr('class', 'highlight')
-      .attr('stroke-width', 1)
       .attr('fill', 'none')
       .style('display', 'none')
       .attr('d', conversationPath);

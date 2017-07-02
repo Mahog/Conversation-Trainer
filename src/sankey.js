@@ -5,13 +5,20 @@ d3.sankey = function() {
       size = [1, 1],
       nodes = [],
       links = [],
-      sinks = [];
+      sinks = []
+      conversations = [];
 
   sankey.nodeWidth = function(_) {
     if (!arguments.length) return nodeWidth;
     nodeWidth = +_;
     return sankey;
   };
+
+  sankey.conversations = function(_) {
+    if (!arguments.length) return conversations;
+    conversations = _;
+    return sankey;
+  }
 
   sankey.nodePadding = function(_) {
     if (!arguments.length) return nodePadding;
@@ -110,26 +117,37 @@ d3.sankey = function() {
 
   // Compute the value (size) of each node by summing the associated links.
   function computeNodeValues() {
+    nodes.forEach(function(node) {
+      node.value = 0.1;
+      node.value += conversations.filter(function(conversation) {
+        return conversation.indexOf(node) > -1;
+      }).length;
+    });
+
+    links.forEach(function(link) {
+      link.value = Math.min(link.source.value, link.target.value);
+    });
+
     // Iteratively control and fix the value of each node by summing up the
     // associated links and splitting the maximum among the smaller of the two
-    for (let i = 0; i < 5; i++) {
-      nodes.forEach(function(node) {
-        let sourceValueSum = d3.sum(node.sourceLinks, value);
-        let targetValueSum = d3.sum(node.targetLinks, value);
-
-        node.value = Math.max(sourceValueSum, targetValueSum);
-
-        if (sourceValueSum > targetValueSum) {
-          node.targetLinks.forEach(function(link) {
-            link.value = sourceValueSum / node.targetLinks.length;
-          })
-        } else if (targetValueSum > sourceValueSum) {
-          node.sourceLinks.forEach(function(link) {
-            link.value = targetValueSum / node.sourceLinks.length;
-          })
-        }
-      });
-    }
+    // for (let i = 0; i < 10; i++) {
+    //   nodes.forEach(function(node) {
+    //     let sourceValueSum = d3.sum(node.sourceLinks, value);
+    //     let targetValueSum = d3.sum(node.targetLinks, value);
+    //
+    //     node.value = Math.max(sourceValueSum, targetValueSum);
+    //
+    //     if (sourceValueSum > targetValueSum) {
+    //       node.targetLinks.forEach(function(link) {
+    //         link.value = sourceValueSum / node.targetLinks.length;
+    //       })
+    //     } else if (targetValueSum > sourceValueSum) {
+    //       node.sourceLinks.forEach(function(link) {
+    //         link.value = targetValueSum / node.sourceLinks.length;
+    //       })
+    //     }
+    //   });
+    // }
   }
 
   // Iteratively assign the breadth (x-position) for each node.
