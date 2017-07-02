@@ -82,7 +82,7 @@ d3.trainer = function() {
     sankey = d3.sankey()
       .nodeWidth(10)
       .nodePadding(12)
-      .size([width, height-margin.bottom])
+      .size([width, height-50])
       .nodes(data.nodes)
       .links(data.links)
       .conversations(conversations)
@@ -105,7 +105,7 @@ d3.trainer = function() {
   */
   function drawDiagram() {
 
-    diagram = svg.append('g');
+    diagram = svg.append('g').attr('transform', 'translate(0,40)');
 
     let timeAxis = timeline()
       .trainer(trainer)
@@ -121,13 +121,13 @@ d3.trainer = function() {
       .registerZoomClient(trainer);
 
     svg.append('g')
-      .attr('transform', 'translate('+(width-200)+','+(height-50)+')')
+      .attr('transform', 'translate('+(width-200)+','+(0)+')')
       .call(zoomPanel);
 
     drawSinks();
     drawLinks();
-    drawNodes();
     drawConversations();
+    drawNodes();
     drawScrollbar();
     updateQuery();
   }
@@ -392,7 +392,7 @@ d3.trainer = function() {
     // conversation is a group containing the rect and the path
     let root = diagram.append('g')
       .attr('class', 'conversations')
-      .attr('transform', 'translate(0, 10)');
+      .attr('transform', 'translate(0, -40)');
 
     root.append('rect')
       .attr('class', 'conv_background')
@@ -668,14 +668,14 @@ d3.trainer = function() {
 
     fisheye.distortion(1/transform.k * 10);
     if (dragging) {
-      diagram.attr('transform', 'translate('+transform.x+',0)');
+      diagram.attr('transform', 'translate('+transform.x+',40)');
       svg.selectAll('.conv_background')
         .attr('transform', 'translate('+-transform.x+',0)');
       conversation.selectAll('circle')
         .attr('transform', 'translate('+-transform.x+',0)');
     } else {
       diagram.transition().duration(250)
-        .attr('transform', 'translate('+transform.x+',0)');
+        .attr('transform', 'translate('+transform.x+',40)');
       svg.selectAll('.conv_background').transition().duration(250)
         .attr('transform', 'translate('+-transform.x+',0)');
       conversation.selectAll('circle').transition().duration(250)
@@ -782,6 +782,11 @@ d3.trainer = function() {
       .attr('r', function(d) {
         return activeConversations.indexOf(d) > -1 ? 7 : 1;
       });
+    conversation.selectAll('path')
+      .style('display', function(d) {
+        return activeConversations.indexOf(d) > -1 && d.active
+          ? 'block' : 'none';
+      })
 
     return trainer
   }
