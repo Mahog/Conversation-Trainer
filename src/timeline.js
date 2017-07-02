@@ -9,6 +9,7 @@ let timeline = function() {
   let trainer = null;
 
   let data;
+  let markersPerDate = {};
 
   const time = d3.scaleTime()
     .domain([new Date('2017-06-01'), new Date('2017-07-31')])
@@ -39,14 +40,13 @@ let timeline = function() {
     svg.append('rect')
       .attr('width', width)
       .attr('height', height)
-      .attr('fill', '#efefef');
+      .attr('fill', '#fafafa');
   }
 
   function drawTimeline() {
     line = svg.append('g')
       .attr('class', 'timeline')
-      .attr('transform', 'translate(0,'+(height-1)+')')
-      .call(d3.axisTop(time));
+      .call(d3.axisBottom(time));
   }
 
   function drawMarkers() {
@@ -56,9 +56,16 @@ let timeline = function() {
       .append('path')
         .attr('class', 'marker')
         .attr('stroke', 'teal')
-        .attr('d', 'M0,0L0,'+height)
+        .attr('d', 'M-5,0L5,0')
         .attr('transform', function(d) {
-          return 'translate('+time(new Date(d['timestamp']))+',0)';
+          let date = new Date(d['timestamp']).toDateString();
+
+          if (typeof markersPerDate[date] === typeof undefined)
+            markersPerDate[date] = 0;
+
+          markersPerDate[date]++;
+
+          return 'translate('+time(new Date(date))+','+(markersPerDate[date] * 4)+')';
         });
   }
 
