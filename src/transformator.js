@@ -164,8 +164,8 @@ let transformator = function() {
         let aMatch = link.source.type === 'a' && link.source.id === answer.target;
         let qMatch = link.source.type === 'q' && link.target.id === answer.target;
 
-        if(aMatch || qMatch)
-          link.value++;
+        // if(aMatch || qMatch)
+          // link.value++;
       });
     });
   }

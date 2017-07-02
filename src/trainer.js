@@ -253,7 +253,7 @@ d3.trainer = function() {
       });
     conversation.selectAll('path')
       .attr('stroke-dasharray', function(d) {
-        return d.containsAllFilters ? '' : '10,10';
+        return d.containsAllFilters ? '1' : '10,10';
       })
 
     label.style('display', displayLabel);
