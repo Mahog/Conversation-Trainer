@@ -405,7 +405,7 @@ d3.trainer = function() {
           .attr('class', 'conversation')
           .on('mouseover', function(d) {
             d3.select(this).classed('hover', true)
-              .select('circle').style('stroke', 'teal')
+              .select('circle').style('stroke', '#1de9b6')
             this.parentNode.appendChild(this);
           })
           .on('mouseout', function(d) {
@@ -441,6 +441,9 @@ d3.trainer = function() {
       .attr('d', conversationPath);
   }
 
+  /**
+   * Show or hide conversation paths on click.
+   */
   function highlightConversation(that, d) {
 
     if (typeof d['active'] === typeof undefined)
@@ -770,12 +773,15 @@ d3.trainer = function() {
     //     .attr('width', widthLabel);
   }
 
+  /**
+   * Show or hide full conversations including the circle on the left.
+   */
   trainer.filterConversations = function(activeConversations) {
-    conversation.attr('display', function(d) {
-      return activeConversations.indexOf(d) > -1
-        ? 'block'
-        : 'none';
-    });
+    conversation.selectAll('circle').transition().duration(200)
+      .ease(d3.easePolyOut)
+      .attr('r', function(d) {
+        return activeConversations.indexOf(d) > -1 ? 7 : 1;
+      });
 
     return trainer
   }

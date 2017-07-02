@@ -22,11 +22,11 @@
 }
 .conversation.active circle,
 .conversation.hover circle {
-  stroke-width: 7;
+  stroke-width: 10;
 }
 .conversation.hover path,
 .conversation.hover circle {
-  stroke: teal;
+  stroke: #1de9b6;
 }
 
 .zoomBtn:hover {
