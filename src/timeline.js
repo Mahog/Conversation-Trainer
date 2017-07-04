@@ -18,9 +18,10 @@ let timeline = function() {
   const brush = d3.brushX()
     .on("brush end", brushed);
 
-  const rankColor = d3.scaleLinear()
-    .domain([0, 20])
-    .range(['#f33', '#3f3']);
+  const rankColor = d3.scaleQuantize()
+    .domain([-20, 30])
+    .range(['#c04741','#e9756f','#ffa49f','#e9d46f','#ffef9f','#e9d46f',
+            '#8fd987','#64bf5b','#3f9d35']);
 
   /**
    * Timeline generator.
@@ -54,25 +55,35 @@ let timeline = function() {
   }
 
   function drawMarkers() {
+    let maximumMarkersPerDay = 0;
     markers = svg.append('g').attr('class', 'markers');
 
     marker = markers.selectAll('.marker').data(data).enter()
       .append('line')
         .attr('class', 'marker')
-        .attr('stroke', 'teal')
-        .attr('fill', 'teal')
-        .attr('stroke-width', 5)
+        .attr('stroke', function(d) { return rankColor(d['score']); })
+        .attr('stroke-width', 2)
         .attr('x1', -7)
         .attr('x2', 7)
-        .attr('transform', function(d) {
+        .each(function(d) {
           let date = new Date(d['timestamp']).toDateString();
 
           if (typeof markersPerDate[date] === typeof undefined)
             markersPerDate[date] = 0;
 
-          markersPerDate[date]++;
+          d['rankInTimeline'] = markersPerDate[date]++;
+          maximumMarkersPerDay = maximumMarkersPerDay < markersPerDate[date]
+            ? markersPerDate[date] : maximumMarkersPerDay;
+        });
 
-          return 'translate('+time(new Date(date))+','+(markersPerDate[date] * 7)+')';
+      let y = d3.scaleLinear()
+        .domain([0, maximumMarkersPerDay])
+        .range([2, height]);
+
+      marker
+        .attr('transform', function(d) {
+          let date = new Date(d['timestamp']).toDateString();
+          return 'translate('+time(new Date(date))+','+y(d['rankInTimeline'])+')';
         });
   }
 
@@ -102,8 +113,17 @@ let timeline = function() {
 
     marker
       .attr('stroke', function(d) {
-        return d === conversation ? '#ff5722' : 'teal';
-      });
+        return d === conversation ? '#2196f3' : rankColor(d['score']);
+      })
+      .attr('stroke-width', function(d) {
+        return d === conversation ? 3 : 1;
+      })
+      .attr('x1', function(d) {
+        return d === conversation ? -12 : -7;
+      })
+      .attr('x2', function(d) {
+        return d === conversation ? 12 : 7;
+      })
   }
 
   timeline.width = function(_) {

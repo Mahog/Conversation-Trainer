@@ -48,7 +48,7 @@ d3.trainer = function() {
   const rankColor = d3.scaleQuantize()
     .domain([-20, 30])
     .range(['#c04741','#e9756f','#ffa49f','#e9d46f','#ffef9f','#e9d46f',
-            '#8fd987','#64bf5b','#3f9d35']); console.log(rankColor(10))
+            '#8fd987','#64bf5b','#3f9d35']);
 
   const zoom = d3.zoom()
     .scaleExtent([1, 15])
