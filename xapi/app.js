@@ -1,7 +1,12 @@
-let TinCan = require("tincanjs");
+var TinCan = require("tincanjs"),
+    source,
+    stream;
+
 let fs = require('fs');
 
-let lrs = new TinCan.LRS (
+let data = [];
+
+source = new TinCan.LRS (
   {
     endpoint: "https://cloud.scorm.com/tc/KT1NDMUAZ9/sandbox/",
     username: "AFoes62nHzAtr-bYSxk",
@@ -11,25 +16,77 @@ let lrs = new TinCan.LRS (
   }
 );
 
-lrs.queryStatements({
-  params: {
-    since: "2012-01-05T08:34:16Z"
-  },
-  callback: (err, sr) => {
-    if (err !== null) {
-      console.log("Failed to query statements: ", err);
+Stream = function () {
+  console.log("Stream.constructor");
+};
+Stream.prototype = {
+  fetchStatements: function (moreUrl) {
+    console.log("Stream.fetchStatements");
+    var self = this;
+
+    if (moreUrl !== null) {
+      source.moreStatements(
+        {
+          url: moreUrl,
+          callback: this.processStatementsResult.bind(this)
+        }
+      );
+
       return;
     }
 
-    let filtered = sr.statements.filter(function(d) {
-      let isInit = d.verb.display['en-US'] === 'launched'
-      let isAnswer = d.verb.display['en-US'] === 'answered'
-      let isCompleted = d.verb.display['en-US'] === 'completed'
+    source.queryStatements(
+      {
+        params: {
+          // since: '2017-06-01T00:00:00Z'
+        },
+        callback: this.processStatementsResult.bind(this)
+      }
+    );
+  },
 
-      return isInit || isAnswer || isCompleted;
-    })
+  processStatementsResult: function (err, sr) {
+    console.log("Stream.processStatementsResult");
+    var i,
+        batch;
 
-    let prettyData = JSON.stringify(filtered, null, 2);
+    if (err !== null) {
+      console.log("Stream.processStatementsResult query/more failed: ", err, sr);
+      fs.writeFileSync('events.json', JSON.stringify(data, null, 0));
+      return;
+    }
 
-    fs.writeFileSync('xAPIEvents.json', prettyData);
-}});
+    if (sr.statements.length > 0) {
+      console.log("Stream.processStatementsResult - printing batch of statements: ", sr.statements.length);
+
+      this.printStatements(sr.statements);
+
+      console.log(data.length)
+    }
+
+    console.log("Stream.processStatementsResult - more link: ", sr.more);
+    if (sr.more !== null) {
+      this.fetchStatements(sr.more);
+    } else {
+      fs.writeFileSync('xAPIEvents.json', JSON.stringify(data, null, 0));
+    }
+  },
+
+  printStatements: function (sts) {
+    let filtered = sts.filter(d => {
+      if (d.verb.display === null) return false;
+
+    let isInit = d.verb.display['en-US'] === 'launched';
+      let isAnswer = d.verb.display['en-US'] === 'answered';
+      let isCompletion = d.verb.display['en-US'] === 'completed';
+
+
+    return isInit || isAnswer || isCompletion;
+    });
+
+    data = data.concat(filtered);
+  }
+};
+
+stream = new Stream ();
+stream.fetchStatements(null);
