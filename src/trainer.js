@@ -35,6 +35,7 @@ d3.trainer = function() {
   let shiftX = 0;
 
   let timelineX = d3.scaleLinear().domain([0, 100]);
+  let timeAxis;
 
   const formatNumber = d3.format(',.0f');
 
@@ -45,9 +46,9 @@ d3.trainer = function() {
     .range(['#eb665f', '#ebd35f', '#58c14d']);
 
   const rankColor = d3.scaleQuantize()
-    .domain([0, 35])
+    .domain([-20, 30])
     .range(['#c04741','#e9756f','#ffa49f','#e9d46f','#ffef9f','#e9d46f',
-            '#b8bab3','#8fd987','#64bf5b','#3f9d35']);
+            '#8fd987','#64bf5b','#3f9d35']); console.log(rankColor(10))
 
   const zoom = d3.zoom()
     .scaleExtent([1, 15])
@@ -107,7 +108,7 @@ d3.trainer = function() {
 
     diagram = svg.append('g').attr('transform', 'translate(0,40)');
 
-    let timeAxis = timeline()
+    timeAxis = timeline()
       .trainer(trainer)
       .data(conversations)
       .width(width)
@@ -408,10 +409,13 @@ d3.trainer = function() {
             d3.select(this).classed('hover', true)
               .select('circle').style('stroke', '#1de9b6')
             this.parentNode.appendChild(this);
+            timeAxis.highlight(d);
           })
           .on('mouseout', function(d) {
             d3.select(this).classed('hover', false)
-              .select('circle').style('stroke', function(d) { return  d.color; })
+              .select('circle')
+                .style('stroke', function(d) { return  d.color; })
+            timeAxis.highlight(null);
           });
 
     // add the conversation-identifier on the left side of the diagram,

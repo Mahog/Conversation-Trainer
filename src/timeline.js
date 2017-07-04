@@ -22,14 +22,18 @@ let timeline = function() {
     .domain([0, 20])
     .range(['#f33', '#3f3']);
 
-
+  /**
+   * Timeline generator.
+   * @param Selection the d3 selection the generator was called on
+   */
   function timeline(selection) {
     svg = selection.append('g')
       .attr('class', 'timeline');
 
+    // draw components to canvas
     drawBackground();
-    drawTimeline();
     drawMarkers();
+    drawTimeline();
 
     svg.append('g')
       .attr('class', 'brush')
@@ -53,10 +57,13 @@ let timeline = function() {
     markers = svg.append('g').attr('class', 'markers');
 
     marker = markers.selectAll('.marker').data(data).enter()
-      .append('path')
+      .append('line')
         .attr('class', 'marker')
         .attr('stroke', 'teal')
-        .attr('d', 'M-5,0L5,0')
+        .attr('fill', 'teal')
+        .attr('stroke-width', 5)
+        .attr('x1', -7)
+        .attr('x2', 7)
         .attr('transform', function(d) {
           let date = new Date(d['timestamp']).toDateString();
 
@@ -65,7 +72,7 @@ let timeline = function() {
 
           markersPerDate[date]++;
 
-          return 'translate('+time(new Date(date))+','+(markersPerDate[date] * 4)+')';
+          return 'translate('+time(new Date(date))+','+(markersPerDate[date] * 7)+')';
         });
   }
 
@@ -88,6 +95,15 @@ let timeline = function() {
 
     // notify the trainer
     trainer.filterConversations(active);
+  }
+
+  timeline.highlight = function(conversation) {
+    if (!arguments.length) return;
+
+    marker
+      .attr('stroke', function(d) {
+        return d === conversation ? '#ff5722' : 'teal';
+      });
   }
 
   timeline.width = function(_) {
