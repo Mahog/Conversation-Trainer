@@ -247,7 +247,8 @@ d3.trainer = function() {
           d.containsAllFilters = d.containsAllFilters && hasFilterOnSink;
         }
       });
-    conversation.select('circle')
+    conversation.select('circle').transition()
+      .duration(200).ease(d3.easePolyOut)
       .attr('fill', function(d) {
         return d['containsAllFilters']
           ? d3.rgb(d.color)
@@ -392,15 +393,15 @@ d3.trainer = function() {
   function drawConversations() {
     // conversation is a group containing the rect and the path
     let root = diagram.append('g')
-      .attr('class', 'conversations')
-      .attr('transform', 'translate(0, -40)');
+      .attr('class', 'conversations');
 
     root.append('rect')
       .attr('class', 'conv_background')
       .attr('x', -30)
       .attr('width', (conversations.length+1) * 25)
       .attr('height', 30)
-      .attr('fill', 'rgba(253,253,253,0.73)');
+      .attr('fill', 'rgba(253,253,253,0.73)')
+      .attr('transform', 'translate(0, -40)');
 
     conversation = root.selectAll('.conversation').data(conversations).enter()
         .append('g')
@@ -426,6 +427,7 @@ d3.trainer = function() {
       .attr('cx', function(d, i) { return d['x'] = i * 25; })
       .attr('cy', 15)
       .attr('r', 7)
+      .attr('transform', 'translate(0, -40)')
       .on('click', function(d) {
         let parent = d3.select(this.parentNode);
         parent.classed('active', !parent.classed('active'));
@@ -674,16 +676,16 @@ d3.trainer = function() {
     if (dragging) {
       diagram.attr('transform', 'translate('+transform.x+',40)');
       svg.selectAll('.conv_background')
-        .attr('transform', 'translate('+-transform.x+',0)');
+        .attr('transform', 'translate('+-transform.x+',-40)');
       conversation.selectAll('circle')
-        .attr('transform', 'translate('+-transform.x+',0)');
+        .attr('transform', 'translate('+-transform.x+',-40)');
     } else {
       diagram.transition().duration(250)
         .attr('transform', 'translate('+transform.x+',40)');
       svg.selectAll('.conv_background').transition().duration(250)
-        .attr('transform', 'translate('+-transform.x+',0)');
+        .attr('transform', 'translate('+-transform.x+',-40)');
       conversation.selectAll('circle').transition().duration(250)
-        .attr('transform', 'translate('+-transform.x+',0)');
+        .attr('transform', 'translate('+-transform.x+',-40)');
 
       node.transition().duration(250)
         .attr('transform', function(d) {
