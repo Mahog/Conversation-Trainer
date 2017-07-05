@@ -221,7 +221,8 @@ let transformator = function() {
         // save score of conversation in property
         if (i === t.length - 1) {
           conversation['score'] = c.result.extensions['chemmedia://expapi/moodpoints/current'];
-          conversation['timestamp'] = c.timestamp;
+          conversation['timestamp'] = randomDate(new Date('2017-06-04'), new Date(c.timestamp)).toDateString();
+          console.log()
           continue;
         }
 
@@ -245,6 +246,12 @@ let transformator = function() {
     conversations.sort(function(c1, c2) {
       return parseInt(c1['score']) < parseInt(c2['score']);
     });
+  }
+
+  function randomDate(start, end) {
+    let date = new Date(+start + Math.random() * (end - start));
+
+    return date;
   }
 
   /**

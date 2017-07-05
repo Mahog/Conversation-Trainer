@@ -12,7 +12,7 @@ let timeline = function() {
   let markersPerDate = {};
 
   const time = d3.scaleTime()
-    .domain([new Date('2017-06-01'), new Date('2017-07-31')])
+    .domain([new Date('2017-05-01'), new Date('2017-07-31')])
     .range([0, width]);
 
   const brush = d3.brushX()
@@ -50,8 +50,9 @@ let timeline = function() {
 
   function drawTimeline() {
     line = svg.append('g')
-      .attr('class', 'timeline')
-      .call(d3.axisBottom(time));
+      .attr('class', 'time')
+      .attr('transform', 'translate(0,'+(height-20)+')')
+      .call(d3.axisBottom(time).tickFormat(d3.timeFormat('%B %d %Y')));
   }
 
   function drawMarkers() {
@@ -62,7 +63,7 @@ let timeline = function() {
       .append('line')
         .attr('class', 'marker')
         .attr('stroke', function(d) { return rankColor(d['score']); })
-        .attr('stroke-width', 2)
+        .attr('stroke-width', 3)
         .attr('x1', -7)
         .attr('x2', 7)
         .each(function(d) {
@@ -77,13 +78,13 @@ let timeline = function() {
         });
 
       let y = d3.scaleLinear()
-        .domain([0, maximumMarkersPerDay])
-        .range([2, height]);
+        .domain([0, 5])
+        .range([2, height-20]);
 
       marker
         .attr('transform', function(d) {
           let date = new Date(d['timestamp']).toDateString();
-          return 'translate('+time(new Date(date))+','+y(d['rankInTimeline'])+')';
+          return 'translate('+time(new Date(date))+','+(y.range()[1]-y(d['rankInTimeline']))+')';
         });
   }
 
@@ -116,7 +117,7 @@ let timeline = function() {
         return d === conversation ? '#2196f3' : rankColor(d['score']);
       })
       .attr('stroke-width', function(d) {
-        return d === conversation ? 3 : 1;
+        return d === conversation ? 5 : 3;
       })
       .attr('x1', function(d) {
         return d === conversation ? -12 : -7;
