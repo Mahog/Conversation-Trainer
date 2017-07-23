@@ -90,7 +90,7 @@ d3.trainer = function() {
     sankey = d3.sankey()
       .nodeWidth(10)
       .nodePadding(12)
-      .size([width - 60, height-50])
+      .size([width - 75, height-50])
       .nodes(data.nodes)
       .links(data.links)
       .conversations(conversations)
@@ -113,7 +113,7 @@ d3.trainer = function() {
   */
   function drawDiagram() {
 
-    diagram = svg.append('g').attr('transform', 'translate(60,40)');
+    diagram = svg.append('g').attr('transform', 'translate(75,40)');
 
     timeAxis = timeline()
       .trainer(trainer)
