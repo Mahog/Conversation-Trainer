@@ -13,7 +13,7 @@
   transition: stroke-opacity 0.25s;
 }
 
-.conversation {
+.conversation, .marker {
   cursor: pointer;
 }
 .conversation path {
@@ -21,11 +21,14 @@
   stroke-width: 2;
 }
 .conversation.active circle,
-.conversation.hover circle {
+.conversation.hover circle,
+.marker.hover,
+.marker.active {
   stroke-width: 10;
 }
 .conversation.hover path,
-.conversation.hover circle {
+.conversation.hover circle,
+.marker.hover {
   stroke: #1de9b6;
   stroke-width: 4;
 }

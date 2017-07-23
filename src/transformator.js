@@ -220,9 +220,9 @@ let transformator = function() {
 
         // save score of conversation in property
         if (i === t.length - 1) {
+          conversation['duration'] = new Date(c['timestamp']) - new Date(t[0]['timestamp']);
           conversation['score'] = c.result.extensions['chemmedia://expapi/moodpoints/current'];
           conversation['timestamp'] = randomDate(new Date('2017-06-04'), new Date(c.timestamp)).toDateString();
-          console.log()
           continue;
         }
 

@@ -20,13 +20,16 @@ d3.trainer = function() {
 
   let svg;
   let diagram; // holds all diagram components
-  let node; // a node representing one conversation option
+  let node; // a node representing one dialog option
   let link; // links between nodes
   let sink; // holds a set of nodes
   let label; // a label right next to a node with a brief message
   let scrollbar;
   let scrollHandle;
   let zoomPanel;
+
+  let conversation;
+  let markers;
 
   let sankey; // sankey diagram object
   let fisheye; // fisheye plugin
@@ -36,6 +39,8 @@ d3.trainer = function() {
 
   let timelineX = d3.scaleLinear().domain([0, 100]);
   let timeAxis;
+
+  let conversationPanel;
 
   const formatNumber = d3.format(',.0f');
 
@@ -49,6 +54,8 @@ d3.trainer = function() {
     .domain([-20, 30])
     .range(['#c04741','#e9756f','#ffa49f','#e9d46f','#ffef9f','#e9d46f',
             '#8fd987','#64bf5b','#3f9d35']);
+
+  const durationScale = d3.scaleLog();
 
   const zoom = d3.zoom()
     .scaleExtent([1, 15])
@@ -83,7 +90,7 @@ d3.trainer = function() {
     sankey = d3.sankey()
       .nodeWidth(10)
       .nodePadding(12)
-      .size([width, height-50])
+      .size([width - 60, height-50])
       .nodes(data.nodes)
       .links(data.links)
       .conversations(conversations)
@@ -106,7 +113,7 @@ d3.trainer = function() {
   */
   function drawDiagram() {
 
-    diagram = svg.append('g').attr('transform', 'translate(0,40)');
+    diagram = svg.append('g').attr('transform', 'translate(60,40)');
 
     timeAxis = timeline()
       .trainer(trainer)
@@ -130,6 +137,7 @@ d3.trainer = function() {
     drawConversations();
     drawNodes();
     drawScrollbar();
+    drawConversationMarkers();
     updateQuery();
   }
 
@@ -139,7 +147,7 @@ d3.trainer = function() {
 
     // Get a set of all nodes that are reachable from the active nodes on
     // each sink. this creates a set [n1, n2, ..., nN] for the first sink.
-    // Intersect the sink from every following sink with the set that was
+    // Intersect the set from every following sink with the set that was
     // created before. This realizes an OR-query on every sink and an AND-query
     // between sinks.
     let i;
@@ -355,13 +363,13 @@ d3.trainer = function() {
       .sort(function(a, b) {
         return b.dy - a.dy;
       });
-
-    link.append('title')
-      .text(function(d) {
-        return d.source.name + ' → ' + d.target.name + '\n' + format(d.value);
-      });
   }
 
+  /*
+   * Given a link, this decides which color the stroke should be depending on
+   * the active-state of source and target. defaults to black.
+   * @param d  a link between two nodes
+   */
   function strokeLink(d) {
     if (transform.k > minZoomLevelPath) {
       if (d.source.active === null) return '#555';
@@ -390,53 +398,31 @@ d3.trainer = function() {
         });
   }
 
+  /**
+   * Draws the conversations. A conversation consists of a circle-representation
+   * to select/deslect it and a path through all nodes indicating the choices
+   * between options made in this particular conversation.
+   */
   function drawConversations() {
-    // conversation is a group containing the rect and the path
     let root = diagram.append('g')
       .attr('class', 'conversations');
 
-    root.append('rect')
-      .attr('class', 'conv_background')
-      .attr('x', -30)
-      .attr('width', (conversations.length+1) * 25)
-      .attr('height', 30)
-      .attr('fill', 'rgba(253,253,253,0.73)')
-      .attr('transform', 'translate(0, -40)');
-
+    // conversation is a group containing the circle and the path
     conversation = root.selectAll('.conversation').data(conversations).enter()
-        .append('g')
-          .attr('class', 'conversation')
-          .on('mouseover', function(d) {
-            d3.select(this).classed('hover', true)
-              .select('circle').style('stroke', '#1de9b6')
-            this.parentNode.appendChild(this);
-            timeAxis.highlight(d);
-          })
-          .on('mouseout', function(d) {
-            d3.select(this).classed('hover', false)
-              .select('circle')
-                .style('stroke', function(d) { return  d.color; })
-            timeAxis.highlight(null);
-          });
-
-    // add the conversation-identifier on the left side of the diagram,
-    // which can be clicked to highlight the related path ontop of the diagram
-    conversation.append('circle')
-      .attr('fill', function(d) { return d3.rgb(d.color=rankColor(d['score'])); })
-      .style('stroke', function(d) { return  d.color; })
-      .attr('cx', function(d, i) { return d['x'] = i * 25; })
-      .attr('cy', 15)
-      .attr('r', 7)
-      .attr('transform', 'translate(0, -40)')
-      .on('click', function(d) {
-        let parent = d3.select(this.parentNode);
-        parent.classed('active', !parent.classed('active'));
-        highlightConversation(this, d);
-      })
-
-    // add a tooltip with the score for this conversation
-    conversation.append('title')
-      .text(function(d) { return d['score']; });
+      .append('g')
+        .attr('class', 'conversation')
+        .on('mouseover', function(d) {
+          d3.select(this).classed('hover', true)
+            .select('circle').style('stroke', '#1de9b6')
+          this.parentNode.appendChild(this);
+          timeAxis.highlight(d);
+        })
+        .on('mouseout', function(d) {
+          d3.select(this).classed('hover', false)
+            .select('circle')
+              .style('stroke', function(d) { return  d.color; })
+          timeAxis.highlight(null);
+        });
 
     // add the path, which consists of segments of links that are joined in
     // one d-path
@@ -445,23 +431,23 @@ d3.trainer = function() {
       .attr('fill', 'none')
       .style('display', 'none')
       .attr('d', conversationPath);
+
+
+    // add a tooltip with the score for this conversation
+    conversation.append('title')
+      .text(function(d) { return d['score'] + 'pts in ' + new Date(d['duration']).getSeconds() + 'sec'; });
   }
 
-  /**
-   * Show or hide conversation paths on click.
-   */
-  function highlightConversation(that, d) {
+  function drawConversationMarkers() {
+    conversationPanel = markerPanel()
+      .height(height)
+      .timeAxis(timeAxis)
+      .conversations(conversations);
 
-    if (typeof d['active'] === typeof undefined)
-      d['active'] = true;
-    else
-      d['active'] = !d['active'];
-
-    if (d['active']) {
-      d3.select(that.parentNode).selectAll('path').style('display', 'block');
-    } else {
-      d3.select(that.parentNode).selectAll('path').style('display', 'none');
-    }
+    svg.append('g')
+      .attr('class', '.conversationMarkers')
+      .attr('transform', 'translate(0,20)')
+      .call(conversationPanel);
   }
 
   /**
@@ -674,18 +660,10 @@ d3.trainer = function() {
 
     fisheye.distortion(1/transform.k * 10);
     if (dragging) {
-      diagram.attr('transform', 'translate('+transform.x+',40)');
-      svg.selectAll('.conv_background')
-        .attr('transform', 'translate('+-transform.x+',-40)');
-      conversation.selectAll('circle')
-        .attr('transform', 'translate('+-transform.x+',-40)');
+      diagram.attr('transform', 'translate('+(transform.x+60)+',40)');
     } else {
       diagram.transition().duration(250)
-        .attr('transform', 'translate('+transform.x+',40)');
-      svg.selectAll('.conv_background').transition().duration(250)
-        .attr('transform', 'translate('+-transform.x+',-40)');
-      conversation.selectAll('circle').transition().duration(250)
-        .attr('transform', 'translate('+-transform.x+',-40)');
+        .attr('transform', 'translate('+(transform.x+60)+',40)');
 
       node.transition().duration(250)
         .attr('transform', function(d) {
@@ -783,11 +761,7 @@ d3.trainer = function() {
    * Show or hide full conversations including the circle on the left.
    */
   trainer.filterConversations = function(activeConversations) {
-    conversation.selectAll('circle').transition().duration(200)
-      .ease(d3.easePolyOut)
-      .attr('r', function(d) {
-        return activeConversations.indexOf(d) > -1 ? 7 : 1;
-      });
+    conversationPanel.filterConversations(activeConversations);
     conversation.selectAll('path')
       .style('display', function(d) {
         return activeConversations.indexOf(d) > -1 && d.active
