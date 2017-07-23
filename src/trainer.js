@@ -255,13 +255,7 @@ d3.trainer = function() {
           d.containsAllFilters = d.containsAllFilters && hasFilterOnSink;
         }
       });
-    conversation.select('circle').transition()
-      .duration(200).ease(d3.easePolyOut)
-      .attr('fill', function(d) {
-        return d['containsAllFilters']
-          ? d3.rgb(d.color)
-          : '#fff';
-      });
+    conversationPanel.updateView();
     conversation.selectAll('path')
       .attr('stroke-dasharray', function(d) {
         return d.containsAllFilters ? 'none' : '10,10';
@@ -412,15 +406,22 @@ d3.trainer = function() {
       .append('g')
         .attr('class', 'conversation')
         .on('mouseover', function(d) {
-          d3.select(this).classed('hover', true)
-            .select('circle').style('stroke', '#1de9b6')
+          d3.select(this).classed('hover', true);
+          d3.selectAll('circle').each(function(e) {
+            if (d === e) d3.select(this)
+              .classed('hover', true)
+              .style('stroke', '#1de9b6');
+          });
           this.parentNode.appendChild(this);
           timeAxis.highlight(d);
         })
         .on('mouseout', function(d) {
-          d3.select(this).classed('hover', false)
-            .select('circle')
-              .style('stroke', function(d) { return  d.color; })
+          d3.select(this).classed('hover', false);
+          d3.selectAll('circle').each(function(e) {
+            if (d === e) d3.select(this)
+              .classed('hover', false)
+              .style('stroke', function(f) { return f.color; });
+          })
           timeAxis.highlight(null);
         });
 

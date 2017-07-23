@@ -24,11 +24,11 @@
 .conversation.hover circle,
 .marker.hover,
 .marker.active {
+  stroke: #1de9b6;
   stroke-width: 10;
 }
 .conversation.hover path,
-.conversation.hover circle,
-.marker.hover {
+.conversation.hover circle {
   stroke: #1de9b6;
   stroke-width: 4;
 }
