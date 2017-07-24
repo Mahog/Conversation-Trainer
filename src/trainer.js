@@ -410,7 +410,7 @@ d3.trainer = function() {
           d3.selectAll('circle').each(function(e) {
             if (d === e) d3.select(this)
               .classed('hover', true)
-              .style('stroke', '#1de9b6');
+              .style('stroke', '#00bfa5');
           });
           this.parentNode.appendChild(this);
           timeAxis.highlight(d);

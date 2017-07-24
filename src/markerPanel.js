@@ -77,7 +77,7 @@ let markerPanel = function() {
         .on('mouseover', function(d) {
           d3.select(this)
             .classed('hover', true)
-            .style('stroke', '#1de9b6');
+            .style('stroke', '#00bfa5');
 
           let path = null;
           d3.selectAll('g.conversation').each(function(e) {

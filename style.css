@@ -20,16 +20,13 @@
   stroke: teal;
   stroke-width: 2;
 }
-.conversation.active circle,
-.conversation.hover circle,
 .marker.hover,
 .marker.active {
-  stroke: #1de9b6;
+  stroke: #00bfa5;
   stroke-width: 10;
 }
-.conversation.hover path,
-.conversation.hover circle {
-  stroke: #1de9b6;
+.conversation.hover path {
+  stroke: #00bfa5;
   stroke-width: 4;
 }
 .zoomPanel text {
