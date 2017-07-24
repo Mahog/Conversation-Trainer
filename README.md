@@ -16,7 +16,7 @@ Your browser should now show a friendly face, offering you to start a conversati
 Repeat the last step until satisfied. Quit the HTTP-server in your terminal.
 
 ## Get the Training data
-Change your working directory again ```cd ../xapi/```. Run the app.js script using node: ```node app.js```. If there is no output and the application closes after a few seconds, everything went according to plan. If there are error messages, deal with them.
+Change your working directory again ```cd ../xapi/```. Run the app.js script using node: ```node app.js```. If there are no error messages and the application closes after a few seconds, everything went according to plan. If there are error messages, deal with them.
 
 ## Start the Visualization
-In the root directory, double-click ```index.html``` to display the file inside your browser. Your conversations should show on the left side as colored rectangles.
+In the root directory, double-click ```index.html``` to display the file inside your browser. Your conversations should show on the left side.
