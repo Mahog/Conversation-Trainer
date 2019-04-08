@@ -20,7 +20,7 @@ let trainer = d3.trainer()
 svg.append('rect').attr('width', width).attr('height', height).attr('fill', 'transparent')
 
 d3.json('./data/conversation_chemmedia.json', function(energy) {
-  d3.json('./xapi/xAPIEvents.json', function(xapiData) {
+  d3.json('./xAPIEvents.json', function(xapiData) {
     let trans = transformator()
       .graph(energy)
       .frequencyData(xapiData);
